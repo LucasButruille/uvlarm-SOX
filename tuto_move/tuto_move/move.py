@@ -4,9 +4,10 @@ from geometry_msgs.msg import Twist
 
 class MoveNode(Node):
 
-    def __init__(self, lin=1.0, ang=0.0):
+    def __init__(self, lin=0.0, ang=0.0):
         super().__init__('move')
-        self.topic = '/turtle1/cmd_vel'
+        #self.topic = '/turtle1/cmd_vel'
+        self.topic = '/cmd_vel'
         #self.topic = '/multi/cmd_nav'
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         self.timer = self.create_timer(0.1, self.activate) # 0.1 seconds to target a frequency of 10 hertz
@@ -22,7 +23,7 @@ class MoveNode(Node):
 
 def move_1m(args=None):
     rclpy.init(args=args)
-    move = MoveNode()
+    move = MoveNode(0.2)
 
     count = 0
     fini = False

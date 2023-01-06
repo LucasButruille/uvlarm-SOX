@@ -28,7 +28,12 @@ def generate_launch_description():
             package='rviz2',
             executable='rviz2',
             arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/tuto_sim/config/configRviz2.rviz']
+        ),
 
+        Node(
+            package='tbot_pytools',
+            executable='multiplexer',
+            prefix='gnome-terminal -x'
         )
 
     ])
