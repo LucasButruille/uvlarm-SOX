@@ -8,6 +8,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     tbot_sim_path = get_package_share_directory('tbot_sim')
+    tuto_sim_path = get_package_share_directory('tuto_sim')
     launch_file_dir = os.path.join(tbot_sim_path, 'launch','includes')
 
     return LaunchDescription([
@@ -22,4 +23,12 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([launch_file_dir, '/challenge.launch.py']),
             launch_arguments={'world': 'challenge-1'}.items(),
             ),
+        
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/tuto_sim/config/configRviz2.rviz']
+
+        )
+
     ])

@@ -1,0 +1,5 @@
+[console_scripts]
+move_1m = tuto_move.move_1m:main
+move_test = tuto_move.move_test:main
+turn_left_45 = tuto_move.turn_left_45:main
+

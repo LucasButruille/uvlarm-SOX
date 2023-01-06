@@ -1,0 +1,63 @@
+[0.000000] (-) TimerEvent: {}
+[0.000141] (tuto_move) JobQueued: {'identifier': 'tuto_move', 'dependencies': OrderedDict()}
+[0.000185] (tuto_move) JobStarted: {'identifier': 'tuto_move'}
+[0.099317] (-) TimerEvent: {}
+[0.199785] (-) TimerEvent: {}
+[0.300117] (-) TimerEvent: {}
+[0.400496] (-) TimerEvent: {}
+[0.500898] (-) TimerEvent: {}
+[0.601212] (-) TimerEvent: {}
+[0.701542] (-) TimerEvent: {}
+[0.801890] (-) TimerEvent: {}
+[0.872034] (tuto_move) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', 'build/tuto_move', 'build', '--build-base', '/home/bot/ros2_ws/tuto_move/build/tuto_move/build', 'install', '--record', '/home/bot/ros2_ws/tuto_move/build/tuto_move/install.log', '--install-scripts', '$base/lib/tuto_move', '--single-version-externally-managed'], 'cwd': '/home/bot/ros2_ws/tuto_move', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'bot', 'SSH_AGENT_PID': '1385', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/bot/ros2_ws/install/turtlesim/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/bot', 'OLDPWD': '/home/bot/ros2_ws', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1135', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '2620', '_colcon_cd_root': '/opt/ros/foxy/', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/bot/ros2_ws/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'bot', 'JOURNAL_STREAM': '8:33542', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'bot', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '1', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/tars:@/tmp/.ICE-unix/1465,unix/tars:/tmp/.ICE-unix/1465', 'INVOCATION_ID': 'ef6fcd8725324fa5acb317d5be3b25d3', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'fr_FR.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/bot/ros2_ws/install/tuto_move:/home/bot/ros2_ws/install/turtlesim:/home/bot/ros2_ws/install/tbot_start:/home/bot/ros2_ws/install/tbot_pytools:/home/bot/ros2_ws/install/py_pubsub:/home/bot/ros2_ws/install/my_package:/opt/ros/foxy', 'SHELL': '/bin/bash', 'TERMINATOR_UUID': 'urn:uuid:e9c6580b-dda2-4142-8b1f-8af8f5b9a9f1', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/bot/ros2_ws/tuto_move/build/tuto_move', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/bot/ros2_ws/tuto_move/build/tuto_move/prefix_override:/home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages:/home/bot/ros2_ws/install/tuto_move/lib/python3.8/site-packages:/home/bot/ros2_ws/install/turtlesim/lib/python3.8/site-packages:/home/bot/ros2_ws/install/tbot_pytools/lib/python3.8/site-packages:/home/bot/ros2_ws/install/py_pubsub/lib/python3.8/site-packages:/home/bot/ros2_ws/install/my_package/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003', 'CMAKE_PREFIX_PATH': '/home/bot/ros2_ws/install/turtlesim:/home/bot/ros2_ws/install/tbot_start'}, 'shell': False}
+[0.902047] (-) TimerEvent: {}
+[1.002464] (-) TimerEvent: {}
+[1.102784] (-) TimerEvent: {}
+[1.175642] (tuto_move) StdoutLine: {'line': b'running egg_info\n'}
+[1.176202] (tuto_move) StdoutLine: {'line': b'creating build/tuto_move/tuto_move.egg-info\n'}
+[1.176450] (tuto_move) StdoutLine: {'line': b'writing build/tuto_move/tuto_move.egg-info/PKG-INFO\n'}
+[1.176729] (tuto_move) StdoutLine: {'line': b'writing dependency_links to build/tuto_move/tuto_move.egg-info/dependency_links.txt\n'}
+[1.177081] (tuto_move) StdoutLine: {'line': b'writing entry points to build/tuto_move/tuto_move.egg-info/entry_points.txt\n'}
+[1.177332] (tuto_move) StdoutLine: {'line': b'writing requirements to build/tuto_move/tuto_move.egg-info/requires.txt\n'}
+[1.177465] (tuto_move) StdoutLine: {'line': b'writing top-level names to build/tuto_move/tuto_move.egg-info/top_level.txt\n'}
+[1.179041] (tuto_move) StdoutLine: {'line': b"writing manifest file 'build/tuto_move/tuto_move.egg-info/SOURCES.txt'\n"}
+[1.202891] (-) TimerEvent: {}
+[1.223982] (tuto_move) StdoutLine: {'line': b"reading manifest file 'build/tuto_move/tuto_move.egg-info/SOURCES.txt'\n"}
+[1.224833] (tuto_move) StdoutLine: {'line': b"writing manifest file 'build/tuto_move/tuto_move.egg-info/SOURCES.txt'\n"}
+[1.225100] (tuto_move) StdoutLine: {'line': b'running build\n'}
+[1.225230] (tuto_move) StdoutLine: {'line': b'running build_py\n'}
+[1.225327] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/build/tuto_move/build\n'}
+[1.225517] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib\n'}
+[1.225688] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move\n'}
+[1.225784] (tuto_move) StdoutLine: {'line': b'copying tuto_move/move_test.py -> /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move\n'}
+[1.225909] (tuto_move) StdoutLine: {'line': b'copying tuto_move/turn_left_45.py -> /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move\n'}
+[1.225992] (tuto_move) StdoutLine: {'line': b'copying tuto_move/__init__.py -> /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move\n'}
+[1.226071] (tuto_move) StdoutLine: {'line': b'copying tuto_move/move_1m.py -> /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move\n'}
+[1.226148] (tuto_move) StdoutLine: {'line': b'running install\n'}
+[1.226868] (tuto_move) StdoutLine: {'line': b'running install_lib\n'}
+[1.228287] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move\n'}
+[1.228643] (tuto_move) StdoutLine: {'line': b'copying /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move/move_test.py -> /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move\n'}
+[1.228775] (tuto_move) StdoutLine: {'line': b'copying /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move/turn_left_45.py -> /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move\n'}
+[1.228992] (tuto_move) StdoutLine: {'line': b'copying /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move/__init__.py -> /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move\n'}
+[1.229089] (tuto_move) StdoutLine: {'line': b'copying /home/bot/ros2_ws/tuto_move/build/tuto_move/build/lib/tuto_move/move_1m.py -> /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move\n'}
+[1.229365] (tuto_move) StdoutLine: {'line': b'byte-compiling /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move/move_test.py to move_test.cpython-38.pyc\n'}
+[1.231237] (tuto_move) StdoutLine: {'line': b'byte-compiling /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move/turn_left_45.py to turn_left_45.cpython-38.pyc\n'}
+[1.231747] (tuto_move) StdoutLine: {'line': b'byte-compiling /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move/__init__.py to __init__.cpython-38.pyc\n'}
+[1.231999] (tuto_move) StdoutLine: {'line': b'byte-compiling /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move/move_1m.py to move_1m.cpython-38.pyc\n'}
+[1.232390] (tuto_move) StdoutLine: {'line': b'running install_data\n'}
+[1.232970] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/install/tuto_move/share/ament_index\n'}
+[1.233196] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/install/tuto_move/share/ament_index/resource_index\n'}
+[1.233330] (tuto_move) StdoutLine: {'line': b'creating /home/bot/ros2_ws/tuto_move/install/tuto_move/share/ament_index/resource_index/packages\n'}
+[1.233430] (tuto_move) StdoutLine: {'line': b'copying resource/tuto_move -> /home/bot/ros2_ws/tuto_move/install/tuto_move/share/ament_index/resource_index/packages\n'}
+[1.233621] (tuto_move) StdoutLine: {'line': b'copying package.xml -> /home/bot/ros2_ws/tuto_move/install/tuto_move/share/tuto_move\n'}
+[1.233756] (tuto_move) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.235782] (tuto_move) StdoutLine: {'line': b'Copying build/tuto_move/tuto_move.egg-info to /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/python3.8/site-packages/tuto_move-0.0.0-py3.8.egg-info\n'}
+[1.236717] (tuto_move) StdoutLine: {'line': b'running install_scripts\n'}
+[1.260093] (tuto_move) StdoutLine: {'line': b'Installing move_1m script to /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/tuto_move\n'}
+[1.260393] (tuto_move) StdoutLine: {'line': b'Installing move_test script to /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/tuto_move\n'}
+[1.260526] (tuto_move) StdoutLine: {'line': b'Installing turn_left_45 script to /home/bot/ros2_ws/tuto_move/install/tuto_move/lib/tuto_move\n'}
+[1.260748] (tuto_move) StdoutLine: {'line': b"writing list of installed files to '/home/bot/ros2_ws/tuto_move/build/tuto_move/install.log'\n"}
+[1.290252] (tuto_move) CommandEnded: {'returncode': 0}
+[1.305186] (-) TimerEvent: {}
+[1.314328] (tuto_move) JobEnded: {'identifier': 'tuto_move', 'rc': 0}
+[1.315117] (-) EventReactorShutdown: {}
