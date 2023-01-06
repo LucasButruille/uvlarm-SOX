@@ -25,6 +25,7 @@ setup(
             'rear = tuto_move.move:rear',
             'turn_left = tuto_move.move:turn_left',
             'turn_right = tuto_move.move:turn_right',
+            'scan_echo = tuto_move.scan_echo:main'
         ],
     },
 )
