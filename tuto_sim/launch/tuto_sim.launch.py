@@ -12,13 +12,14 @@ def generate_launch_description():
 
     return LaunchDescription([
         
+        Node(
+            package='teleop_twist_keyboard',
+            executable='teleop_twist_keyboard',
+            prefix='gnome-terminal -x'
+        ),
+
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([launch_file_dir, '/challenge.launch.py']),
             launch_arguments={'world': 'challenge-1'}.items(),
             ),
-        
-        # Node(
-        #     package='tbot_sim',
-        #     executable='challenge-1.launch.py',
-        # ),
     ])
