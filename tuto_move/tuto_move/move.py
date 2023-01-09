@@ -95,15 +95,15 @@ def turn_left(args=None):
 
 def turn_right(args=None):
     rclpy.init(args=args)
-    turn_left = MoveNode(ang=-1.0)
+    turn_right = MoveNode(ang=-1.0)
 
     count = 0
     fini = False
     # Start the ros infinit loop with the move node.
     # rclpy.spin(move)
     while rclpy.ok() and not fini:
-        rclpy.spin_once(turn_left)
-        temps = 10/abs(turn_left.velo.angular.z)
+        rclpy.spin_once(turn_right)
+        temps = 10/abs(turn_right.velo.angular.z)
         if count >= temps:
             fini = True
         else:
@@ -112,8 +112,7 @@ def turn_right(args=None):
 
 
     # At the end, destroy the node explicitly.
-    turn_left.destroy_node()
+    turn_right.destroy_node()
 
     # and shut the light down.
     rclpy.shutdown()
- 
