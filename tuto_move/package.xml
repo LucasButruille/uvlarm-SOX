@@ -10,10 +10,7 @@
   <depend>rclpy</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
-<<<<<<< HEAD
-=======
   <depend>math</depend>
->>>>>>> 0b07f3a7312f47f22e83a852cfad613d92563372
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
