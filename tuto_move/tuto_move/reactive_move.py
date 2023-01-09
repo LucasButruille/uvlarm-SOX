@@ -19,28 +19,28 @@ class AutoRobot(Node):
         sampleright = 0
         sampleleft = 0
         for point in obstacles :
-            if point.y >= 0 :
+            if point.y >= 0 and point.y < 0.4:
                 sampleright += 1
-            else :
+            elif point.y < 0 and point.y > -0.4 :
                 sampleleft += 1
 
         print('sampleleft : ' + (str)(sampleleft) + ' sampleright :' + (str)(sampleright))
-        if (sampleleft > sampleright and sampleleft >= 30 and sampleleft < 80) : # Tourner à droite zone 1
+        if (sampleleft > sampleright and sampleleft >= 30 and sampleleft < 70) : # Tourner à droite zone 1
             self.velo.linear.x = 0.2
             self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 30 and sampleright < 80) : # Tourner à gauche zone 2
+        elif (sampleleft < sampleright and sampleright >= 30 and sampleright < 70) : # Tourner à gauche zone 2
             self.velo.linear.x = 0.2
             self.velo.angular.z = -0.6
-        elif (sampleleft > sampleright and sampleright >= 80 and sampleleft < 120) : # Tourner à droite zone 3
+        elif (sampleleft > sampleright and sampleleft >= 70 and sampleleft < 110) : # Tourner à droite zone 3
             self.velo.linear.x = 0.1
             self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 80 and sampleright < 120) : # Tourner à gauche zone 4
+        elif (sampleleft < sampleright and sampleright >= 70 and sampleright < 110) : # Tourner à gauche zone 4
             self.velo.linear.x = 0.1
             self.velo.angular.z = -0.6
-        elif (sampleleft > sampleright and sampleright >= 120) : # Tourner à droite zone 5
+        elif (sampleleft > sampleright and sampleleft >= 110) : # Tourner à droite zone 5
             self.velo.linear.x = 0.0
             self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 120) : # Tourner à gauche zone 6
+        elif (sampleleft < sampleright and sampleright >= 110) : # Tourner à gauche zone 6
             self.velo.linear.x = 0.0
             self.velo.angular.z = -0.6
         else :
