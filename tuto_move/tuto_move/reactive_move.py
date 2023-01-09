@@ -16,23 +16,35 @@ class AutoRobot(Node):
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
         self.velo = Twist()
-        sampleright = []
-        sampleleft = []
+        sampleright = 0
+        sampleleft = 0
         for point in obstacles :
-            if point.x >= 0 :
-                sampleright.append(point)
+            if point.y >= 0 :
+                sampleright += 1
             else :
-                sampleleft.append(point)
+                sampleleft += 1
 
-        print('sampleleft : ' + len(sampleleft) + ' sampleright :' + len(sampleright))
-        if (len(sampleleft) > len(sampleright)) :
-            self.velo.linear.x = 0.0
-            self.velo.angular.z = -0.4
-        elif (len(sampleleft) < len(sampleright)) :
-            self.velo.linear.x = 0.0
-            self.velo.angular.z = 0.4
-        else :
+        print('sampleleft : ' + (str)(sampleleft) + ' sampleright :' + (str)(sampleright))
+        if (sampleleft > sampleright and sampleleft >= 30 and sampleleft < 80) : # Tourner à droite zone 1
             self.velo.linear.x = 0.2
+            self.velo.angular.z = 0.6
+        elif (sampleleft < sampleright and sampleright >= 30 and sampleright < 80) : # Tourner à gauche zone 2
+            self.velo.linear.x = 0.2
+            self.velo.angular.z = -0.6
+        elif (sampleleft > sampleright and sampleright >= 80 and sampleleft < 120) : # Tourner à droite zone 3
+            self.velo.linear.x = 0.1
+            self.velo.angular.z = 0.6
+        elif (sampleleft < sampleright and sampleright >= 80 and sampleright < 120) : # Tourner à gauche zone 4
+            self.velo.linear.x = 0.1
+            self.velo.angular.z = -0.6
+        elif (sampleleft > sampleright and sampleright >= 120) : # Tourner à droite zone 5
+            self.velo.linear.x = 0.0
+            self.velo.angular.z = 0.6
+        elif (sampleleft < sampleright and sampleright >= 120) : # Tourner à gauche zone 6
+            self.velo.linear.x = 0.0
+            self.velo.angular.z = -0.6
+        else :
+            self.velo.linear.x = 0.4
             self.velo.angular.z = 0.0
     
         self.velocity_publisher.publish(self.velo)

@@ -11,12 +11,12 @@ class ScanInterpret(Node):
         super().__init__('scan_interpreter')
         self.create_subscription( LaserScan, 'scan', self.scan_callback, 10)
         self.obstacle_publish = self.create_publisher(PointCloud, 'obstacles', 10)
-        self.obstacles = []
 
     def scan_callback(self, scanMsg):
+        self.obstacles = []
         angle= scanMsg.angle_min
         for aDistance in scanMsg.ranges :
-            if 0.1 < aDistance and aDistance < 0.3 :
+            if 0.1 < aDistance and aDistance < 1.0 :
                 # aPoint= [
                 #     math.cos(angle) * aDistance,
                 #     math.sin( angle ) * aDistance
