@@ -1,13 +1,13 @@
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
-from sensor_msgs.msg import PointCloud2
+from sensor_msgs.msg import PointCloud
 
 class AutoRobot(Node):
     def __init__(self):
         super().__init__('move')
         self.topic = '/multi/cmd_nav'
-        self.create_subscription( PointCloud2, 'obstacles', self.avoid_obstacles, 10)
+        self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         # self.timer = self.create_timer(0.1, self.avoid_obstacles)
         # self.lin = (float)(lin)
@@ -18,11 +18,11 @@ class AutoRobot(Node):
         self.velo = Twist()
         sampleright = []
         sampleleft = []
-        for i in obstacles :
-            if i.x >= 0 :
-                sampleright.append(i)
+        for point in obstacles :
+            if point.x >= 0 :
+                sampleright.append(point)
             else :
-                sampleleft.append(i)
+                sampleleft.append(point)
 
         print('sampleleft : ' + len(sampleleft) + ' sampleright :' + len(sampleright))
         if (len(sampleleft) > len(sampleright)) :
