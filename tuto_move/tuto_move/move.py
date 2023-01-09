@@ -112,8 +112,7 @@ def turn_right(args=None):
 
 
     # At the end, destroy the node explicitly.
-    turn_left.destroy_node()
+    turn_right.destroy_node()
 
     # and shut the light down.
     rclpy.shutdown()
- 

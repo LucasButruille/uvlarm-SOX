@@ -26,7 +26,11 @@ setup(
             'turn_left = tuto_move.move:turn_left',
             'turn_right = tuto_move.move:turn_right',
             'scan_echo = tuto_move.scan_echo:main',
+<<<<<<< HEAD
             'reactive_move = tuto_move.reactive_move:reactive_move'
+=======
+            'reactive_move = tuto_move.reactive_move:main',
+>>>>>>> 0b07f3a7312f47f22e83a852cfad613d92563372
         ],
     },
 )
