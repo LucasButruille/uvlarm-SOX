@@ -6,7 +6,8 @@ from sensor_msgs.msg import PointCloud
 class AutoRobot(Node):
     def __init__(self):
         super().__init__('move')
-        self.topic = '/multi/cmd_nav'
+        #self.topic = '/multi/cmd_nav'
+        self.topic = 'cmd_vel'
         self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         # self.lin = (float)(lin)
@@ -15,18 +16,19 @@ class AutoRobot(Node):
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
         self.velo = Twist()
-        sampleright = []
-        sampleleft = []
+        sampleright = 0
+        sampleleft = 0
         for point in obstacles :
-            if point.x >= 0 :
-                sampleright.append(point)
+            if point.y >= 0 :
+                sampleright += 1
             else :
-                sampleleft.append(point)
+                sampleleft += 1
 
-        if (len(sampleleft) > len(sampleright)) :
+        print(f"Left : {sampleleft} | Right : {sampleright}")
+        if (sampleleft > sampleright) :
             self.velo.linear.x = 0.0
             self.velo.angular.z = -0.4
-        elif (len(sampleleft) < len(sampleright)) :
+        elif (sampleleft < sampleright) :
             self.velo.linear.x = 0.0
             self.velo.angular.z = 0.4
         else :

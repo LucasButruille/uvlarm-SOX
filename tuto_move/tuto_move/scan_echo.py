@@ -16,19 +16,13 @@ class ScanInterpret(Node):
     def scan_callback(self, scanMsg):
         angle= scanMsg.angle_min
         for aDistance in scanMsg.ranges :
-            if 0.1 < aDistance and aDistance < 0.3 :
-                # aPoint= [
-                #     math.cos(angle) * aDistance,
-                #     math.sin( angle ) * aDistance
-                # ]
+            if 0.05 < aDistance and aDistance < 0.3 :
                 aPoint = Point32()
                 aPoint.x= (float)(math.cos(angle) * aDistance)
                 aPoint.y= (float)(math.sin( angle ) * aDistance)
                 aPoint.z= (float)(0)
-                
                 self.obstacles.append( aPoint )
             angle+= scanMsg.angle_increment
-        #sample= [ [ round(p[0], 2), round(p[1], 2) ] for p in  obstacles[10:20] ]
         #sample= [ p for p in  self.obstacles[10:20] ]
         #self.get_logger().info( f" obs({len(self.obstacles)}) ...{sample}..." )
         #self.get_logger().info( f"scan:\n{scanMsg.header}\n{len(scanMsg.ranges)}" )
@@ -37,6 +31,7 @@ class ScanInterpret(Node):
         obs.header = scanMsg.header
         obs.points = self.obstacles
         self.obstacle_publish.publish(obs)
+        
 
 def main(args=None):
     rclpy.init(args=args)
