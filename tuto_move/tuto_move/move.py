@@ -7,8 +7,8 @@ class MoveNode(Node):
     def __init__(self, lin=0.0, ang=0.0):
         super().__init__('move')
         #self.topic = '/turtle1/cmd_vel'
-        self.topic = '/cmd_vel'
-        #self.topic = '/multi/cmd_nav'
+        # self.topic = '/cmd_vel'
+        self.topic = '/multi/cmd_nav'
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         self.timer = self.create_timer(0.1, self.activate) # 0.1 seconds to target a frequency of 10 hertz
         self.lin = (float)(lin)
@@ -17,7 +17,7 @@ class MoveNode(Node):
     def activate(self):
         self.velo = Twist()
         self.velo.linear.x = self.lin # target a 0.2 meter per second velocity
-        self.velo.angular.z = self.ang 
+        self.velo.angular.z = self.ang
         self.velocity_publisher.publish(self.velo)
     
 
@@ -95,15 +95,15 @@ def turn_left(args=None):
 
 def turn_right(args=None):
     rclpy.init(args=args)
-    turn_left = MoveNode(ang=-1.0)
+    turn_right = MoveNode(ang=-1.0)
 
     count = 0
     fini = False
     # Start the ros infinit loop with the move node.
     # rclpy.spin(move)
     while rclpy.ok() and not fini:
-        rclpy.spin_once(turn_left)
-        temps = 10/abs(turn_left.velo.angular.z)
+        rclpy.spin_once(turn_right)
+        temps = 10/abs(turn_right.velo.angular.z)
         if count >= temps:
             fini = True
         else:
