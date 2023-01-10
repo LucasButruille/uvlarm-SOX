@@ -17,6 +17,10 @@ class ScanInterpret(Node):
         angle= scanMsg.angle_min
         for aDistance in scanMsg.ranges :
             if 0.05 < aDistance and aDistance < 0.6 :
+                # aPoint= [
+                #     math.cos(angle) * aDistance,
+                #     math.sin( angle ) * aDistance
+                # ]
                 aPoint = Point32()
                 aPoint.x= (float)(math.cos(angle) * aDistance)
                 aPoint.y= (float)(math.sin( angle ) * aDistance)

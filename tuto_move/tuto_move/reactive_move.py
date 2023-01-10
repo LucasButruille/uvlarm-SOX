@@ -20,9 +20,9 @@ class AutoRobot(Node):
         sampleright = 0
         sampleleft = 0
         for point in obstacles :
-            if point.y >= 0:
+            if point.y >= 0 and point.y < 0.4:
                 sampleright += 1
-            else if :
+            elif point.y < 0 and point.y > -0.4 :
                 sampleleft += 1
 
         print('sampleleft : ' + (str)(sampleleft) + ' sampleright :' + (str)(sampleright))
