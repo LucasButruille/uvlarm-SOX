@@ -16,7 +16,7 @@ class ScanInterpret(Node):
         self.obstacles = []
         angle= scanMsg.angle_min
         for aDistance in scanMsg.ranges :
-            if 0.05 < aDistance and aDistance < 0.3 :
+            if 0.05 < aDistance and aDistance < 0.6 :
                 aPoint = Point32()
                 aPoint.x= (float)(math.cos(angle) * aDistance)
                 aPoint.y= (float)(math.sin( angle ) * aDistance)
@@ -31,7 +31,7 @@ class ScanInterpret(Node):
         obs.header = scanMsg.header
         obs.points = self.obstacles
         self.obstacle_publish.publish(obs)
-        
+
         
 
 def main(args=None):
