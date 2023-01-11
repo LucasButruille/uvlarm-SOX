@@ -13,42 +13,53 @@ class AutoRobot(Node):
         # self.timer = self.create_timer(0.1, self.avoid_obstacles)
         # self.lin = (float)(lin)
         # self.ang = (float)(ang)
+        self.old_lin = (float)(0.01)
+        self.lin = (float)(0.1)
+        self.ang = (float)(0.0)
 
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
         self.velo = Twist()
-        sampleright = 0
-        sampleleft = 0
-        for point in obstacles :
-            if point.y >= 0 and point.y < 0.4:
-                sampleright += 1
-            elif point.y < 0 and point.y > -0.4 :
-                sampleleft += 1
-
-        print('sampleleft : ' + (str)(sampleleft) + ' sampleright :' + (str)(sampleright))
-        if (sampleleft > sampleright and sampleleft >= 30 and sampleleft < 70) : # Tourner à droite zone 1
-            self.velo.linear.x = 0.2
-            self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 30 and sampleright < 70) : # Tourner à gauche zone 2
-            self.velo.linear.x = 0.2
-            self.velo.angular.z = -0.6
-        elif (sampleleft > sampleright and sampleleft >= 70 and sampleleft < 110) : # Tourner à droite zone 3
-            self.velo.linear.x = 0.1
-            self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 70 and sampleright < 110) : # Tourner à gauche zone 4
-            self.velo.linear.x = 0.1
-            self.velo.angular.z = -0.6
-        elif (sampleleft > sampleright and sampleleft >= 110) : # Tourner à droite zone 5
-            self.velo.linear.x = 0.0
-            self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 110) : # Tourner à gauche zone 6
-            self.velo.linear.x = 0.0
-            self.velo.angular.z = -0.6
-        else :
-            self.velo.linear.x = 0.4
-            self.velo.angular.z = 0.0
-    
+        if obstacles != []:
+            for point in obstacles :
+                if point.y >= 0 and point.y < 0.5:      # Obstacles à Droite
+                    if point.x <= 10:
+                        self.lin = 0.0
+                        self.ang = -0.6
+                    if point.x <= 40:
+                        self.lin = 0.05
+                        self.ang = -0.6
+                    if point.x <= 70:
+                        self.lin = 0.1
+                        self.ang = -0.6
+                elif point.y < 0 and point.y > -0.5 :   # Obstacles à gauche
+                    if point.x <= 10:
+                        self.lin = 0.0
+                        self.ang = 0.6
+                    if point.x <= 40:
+                        self.lin = 0.05
+                        self.ang = 0.6
+                    if point.x <= 70:
+                        self.lin = 0.1
+                        self.ang = 0.6
+                else:
+                    self.lin = 0.1
+                    self.ang = 0.0
+        #else:
+        #    self.lin = 1.0
+            
+        print(f"consigne : Lin = {self.lin} | Ang = {self.ang} | Old_lin = {self.old_lin}")
+        '''
+        if self.lin > self.old_lin:
+            self.lin = 1.1*self.old_lin
+        '''
+        self.velo.linear.x = self.lin
+        self.velo.angular.z = self.ang
+        print(f"Lin : {self.lin} | Ang : {self.ang}")
         self.velocity_publisher.publish(self.velo)
+
+        self.old_lin = self.lin
+        
 
 def reactive_move(args=None) :
     rclpy.init(args=args)
