@@ -5,7 +5,7 @@ from sensor_msgs.msg import PointCloud
 
 class AutoRobot(Node):
     def __init__(self):
-        super().__init__('move')
+        super().__init__('Auto')
         self.topic = '/multi/cmd_nav'
         self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
@@ -16,33 +16,56 @@ class AutoRobot(Node):
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
         self.velo = Twist()
-        sampleright = 0
-        sampleleft = 0
-        for point in obstacles :
-            if point.y >= 0 and point.y < 0.4:
-                sampleright += 1
-            elif point.y < 0 and point.y > -0.4 :
-                sampleleft += 1
+        sampleright1 = 0
+        sampleright2 = 0
+        sampleright3 = 0
+        sampleleft1 = 0
+        sampleleft2 = 0
+        sampleleft3 = 0
 
-        print('sampleleft : ' + (str)(sampleleft) + ' sampleright :' + (str)(sampleright))
-        if (sampleleft > sampleright and sampleleft >= 30 and sampleleft < 70) : # Tourner à droite zone 1
-            self.velo.linear.x = 0.2
-            self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 30 and sampleright < 70) : # Tourner à gauche zone 2
-            self.velo.linear.x = 0.2
-            self.velo.angular.z = -0.6
-        elif (sampleleft > sampleright and sampleleft >= 70 and sampleleft < 110) : # Tourner à droite zone 3
-            self.velo.linear.x = 0.1
-            self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 70 and sampleright < 110) : # Tourner à gauche zone 4
-            self.velo.linear.x = 0.1
-            self.velo.angular.z = -0.6
-        elif (sampleleft > sampleright and sampleleft >= 110) : # Tourner à droite zone 5
-            self.velo.linear.x = 0.0
-            self.velo.angular.z = 0.6
-        elif (sampleleft < sampleright and sampleright >= 110) : # Tourner à gauche zone 6
-            self.velo.linear.x = 0.0
-            self.velo.angular.z = -0.6
+        for point in obstacles :
+            if point.y >= 0 and point.y < 0.25 :
+                if point.x >= 0 and point.x < 0.15:
+                    sampleright1 += 1
+                elif point.x >= 0.15 and point.x < 0.30 :
+                    sampleright2 += 1
+                elif point.x >= 0.30 :
+                    sampleright3 += 1
+
+            elif point.y < 0 and point.y > -0.25 :
+                if point.x >= 0 and point.x < 0.15:
+                    sampleleft1 += 1
+                elif point.x >= 0.15 and point.x < 0.30 :
+                    sampleleft2 += 1
+                elif point.x >= 0.30 :
+                    sampleleft3 += 1
+        
+        print('sampleleft1 : ' + (str)(sampleleft1) + ' sampleright1 :' + (str)(sampleright1))
+
+        if (sampleleft1 > 30 or sampleright1 > 30) :
+            if (sampleleft1 > sampleright1) : # Tourner à droite zone 1
+                self.velo.linear.x = 0.0
+                self.velo.angular.z = 0.6
+            else : # Tourner à gauche zone 1
+                self.velo.linear.x = 0.0
+                self.velo.angular.z = -0.6
+
+        elif (sampleleft2 > 30 or sampleright2 > 30) :
+            if (sampleleft2 > sampleright2) : # Tourner à droite zone 2
+                self.velo.linear.x = 0.1
+                self.velo.angular.z = 0.6
+            else : # Tourner à gauche zone 2
+                self.velo.linear.x = 0.1
+                self.velo.angular.z = -0.6
+        
+        elif (sampleleft3 > 30 or sampleright3 > 30) :
+            if (sampleleft3 > sampleright3) : # Tourner à droite zone 3
+                self.velo.linear.x = 0.2
+                self.velo.angular.z = 0.6
+            else : # Tourner à gauche zone 3
+                self.velo.linear.x = 0.2
+                self.velo.angular.z = -0.6
+                
         else :
             self.velo.linear.x = 0.4
             self.velo.angular.z = 0.0
