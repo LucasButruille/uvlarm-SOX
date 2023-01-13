@@ -26,7 +26,8 @@ setup(
             'turn_left = tuto_move.move:turn_left',
             'turn_right = tuto_move.move:turn_right',
             'scan_echo = tuto_move.scan_echo:main',
-            'reactive_move = tuto_move.reactive_move:reactive_move'
+            'reactive_move = tuto_move.reactive_move:reactive_move',
+            'reactive_move_simu = tuto_move.reactive_move_simu:reactive_move_simu',
         ],
     },
 )
