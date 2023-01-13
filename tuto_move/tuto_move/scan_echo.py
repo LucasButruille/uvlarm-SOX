@@ -16,7 +16,7 @@ class ScanInterpret(Node):
         self.obstacles = []
         angle= scanMsg.angle_min
         for aDistance in scanMsg.ranges :
-            if 0.05 < aDistance and aDistance < 0.5 :
+            if 0.05 < aDistance and aDistance < 1.0 :
                 # aPoint= [
                 #     math.cos(angle) * aDistance,
                 #     math.sin( angle ) * aDistance
