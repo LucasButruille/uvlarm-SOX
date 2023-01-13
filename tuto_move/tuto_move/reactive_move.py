@@ -35,35 +35,35 @@ class AutoRobot(Node):
         for point in obstacles :
             if point.y >= 0 and point.y < 0.20 :
                 if point.x >= 0 and point.x < 0.20:
-                    sampleright1 += 1
-                elif point.x >= 0.20 and point.x < 0.60 :
-                    sampleright2 += 1
-                elif point.x >= 0.60 :
-                    sampleright3 += 1
-
-            elif point.y < 0 and point.y > -0.20 :
-                if point.x >= 0 and point.x < 0.20:
                     sampleleft1 += 1
                 elif point.x >= 0.20 and point.x < 0.60 :
                     sampleleft2 += 1
                 elif point.x >= 0.60 :
                     sampleleft3 += 1
+
+            elif point.y < 0 and point.y > -0.20 :
+                if point.x >= 0 and point.x < 0.20:
+                    sampleright1 += 1
+                elif point.x >= 0.20 and point.x < 0.60 :
+                    sampleright2 += 1
+                elif point.x >= 0.60 :
+                    sampleright3 += 1
             
             if point.y >= 0.20 and point.y < 0.30 :
-                if point.x >= -0.05 and point.x < 0.20 :
-                    sampletooright1 += 1
-                elif point.x >= 0.20 and point.x < 0.60 :
-                    sampletooright2 += 1
-                elif point.x >= 0.60 :
-                    sampletooright3 +=1
-
-            elif point.y < -0.20 and point.y > -0.30 :
                 if point.x >= -0.05 and point.x < 0.20 :
                     sampletooleft1 += 1
                 elif point.x >= 0.20 and point.x < 0.60 :
                     sampletooleft2 += 1
                 elif point.x >= 0.60 :
-                    sampletooleft3 += 1
+                    sampletooleft3 +=1
+
+            elif point.y < -0.20 and point.y > -0.30 :
+                if point.x >= -0.05 and point.x < 0.20 :
+                    sampletooright1 += 1
+                elif point.x >= 0.20 and point.x < 0.60 :
+                    sampletooright2 += 1
+                elif point.x >= 0.60 :
+                    sampletooright3 += 1
         
         # print('sampleleft1 : ' + (str)(sampleleft1) + ' sampleright1 :' + (str)(sampleright1))
         
@@ -72,15 +72,15 @@ class AutoRobot(Node):
 
             if (sampleleft1 > sampleright1 and old_speed.angular.z >= 0 and sampletooright1 < 50) : # Tourner à droite zone 1
                 # self.velo.linear.x = 0.0
-                # self.velo.angular.z = 0.6
+                # self.velo.angular.z = 0.8
                 lin = 0.0
-                ang = 0.8
+                ang = -0.8
 
             elif (old_speed.angular.z <= 0 and sampletooleft1 < 50) : # Tourner à gauche zone 1
                 # self.velo.linear.x = 0.0
-                # self.velo.angular.z = -0.6
+                # self.velo.angular.z = -0.8
                 lin = 0.0
-                ang = -0.8
+                ang = 0.8
             
             else :
                 lin = old_speed.linear.x
@@ -93,13 +93,13 @@ class AutoRobot(Node):
                 # self.velo.linear.x = 0.1
                 # self.velo.angular.z = 0.6
                 lin = 0.1
-                ang = 0.6
+                ang = -0.6
 
             elif (old_speed.angular.z <= 0 and sampletooleft2 < 50) : # Tourner à gauche zone 2
                 # self.velo.linear.x = 0.1
                 # self.velo.angular.z = -0.6
                 lin = 0.1
-                ang = -0.6
+                ang = 0.6
 
             else :
                 lin = old_speed.linear.x
@@ -111,41 +111,41 @@ class AutoRobot(Node):
                 # self.velo.linear.x = 0.2
                 # self.velo.angular.z = 0.6
                 lin = 0.3
-                ang = 0.6
+                ang = -0.6
 
             elif (old_speed.angular.z <= 0 and sampletooleft3 < 50) : # Tourner à gauche zone 3
                 # self.velo.linear.x = 0.2
                 # self.velo.angular.z = -0.6
                 lin = 0.3
-                ang = -0.6
+                ang = 0.6
 
             else :
                 lin = old_speed.linear.x
                 ang = old_speed.angular.z
 
         elif (sampletooleft1 > 20 or sampletooright1 > 20):
-            if (sampletooleft1 > sampletooright1) :
-                lin = 0.4
-                ang = 0.8
-            else :
+            if (sampletooleft1 > sampletooright1) : # Tourner à droite
                 lin = 0.4
                 ang = -0.8
+            else : # Tourner à gauche
+                lin = 0.4
+                ang = 0.8
 
         elif (sampletooleft2 > 20 or sampletooright2 > 20) :
             if (sampletooleft2 > sampletooright2) :
                 lin = 0.4
-                ang = 0.6
+                ang = -0.6
             else : 
                 lin = 0.4
-                ang = -0.6
+                ang = 0.6
 
         elif (sampletooleft3 > 20 or sampletooright3 > 20) :
             if (sampletooleft3 > sampletooright3) :
                 lin = 0.4
-                ang = 0.4
+                ang = -0.4
             else :
                 lin = 0.4
-                ang = -0.4
+                ang = 0.4
 
         else :
             # self.velo.linear.x = 0.4
