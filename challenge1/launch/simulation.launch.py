@@ -17,27 +17,27 @@ def generate_launch_description():
             launch_arguments={'world': 'challenge-1'}.items(),
         ),
 
-        # Node(
-        #     package='teleop_twist_keyboard',
-        #     executable='teleop_twist_keyboard',
-        #     prefix='gnome-terminal -x',
-        #     arguments=['/cmd_vel:=/multi/cmd_teleop'] 
-        # ),
+        Node(
+            package='teleop_twist_keyboard',
+            executable='teleop_twist_keyboard',
+            prefix='gnome-terminal -x',
+            arguments=['/cmd_vel:=/multi/cmd_teleop'] 
+        ),
 
-        # Node(
-        #     package='tbot_pytools',
-        #     executable='multiplexer',
-        #     prefix='gnome-terminal -x'
-        # ),
+        Node(
+            package='tbot_pytools',
+            executable='multiplexer',
+            prefix='gnome-terminal -x'
+        ),
 
         Node(
             package='tuto_move',
             executable='scan_echo',
         ),
 
-        # Node(
-        #     package='tuto_move',
-        #     executable='reactive_move_simu',
-        # ),
+        Node(
+            package='tuto_move',
+            executable='reactive_move_simu',
+        ),
 
     ])

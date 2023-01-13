@@ -3,7 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import PointCloud
 
-class AutoRobot(Node):
+class AutoRobot_Simu(Node):
     def __init__(self):
         super().__init__('Auto')
         self.topic = '/cmd_vel'
@@ -12,6 +12,7 @@ class AutoRobot(Node):
         self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         self.velo = Twist()
+        print("Move en cours ...")
 
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
@@ -111,8 +112,8 @@ class AutoRobot(Node):
 
 def reactive_move_simu(args=None) :
     rclpy.init(args=args)
-    autoRobot = AutoRobot()
+    autoRobotsimu = AutoRobot_Simu()
     # Start the ros infinit loop with the AutoRobot node.
-    rclpy.spin(autoRobot)
-    autoRobot.destroy_node()
+    rclpy.spin(autoRobotsimu)
+    autoRobotsimu.destroy_node()
     rclpy.shutdown()
