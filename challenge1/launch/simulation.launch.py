@@ -14,7 +14,7 @@ def generate_launch_description():
         
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([launch_file_dir, '/challenge.launch.py']),
-            launch_arguments={'world': 'challenge-1'}.items(),
+            launch_arguments={'world': 'challenge-2'}.items(),
         ),
 
         Node(

@@ -68,15 +68,15 @@ class AutoRobot(Node):
         # print('sampleleft1 : ' + (str)(sampleleft1) + ' sampleright1 :' + (str)(sampleright1))
         
 
-        if (sampleleft1 > 30 or sampleright1 > 30) :
+        if (sampleleft1 > 5 or sampleright1 > 5) :
 
-            if (sampleleft1 > sampleright1 and old_speed.angular.z >= 0 and sampletooright1 < 40) : # Tourner à droite zone 1
+            if (sampleleft1 > sampleright1 and old_speed.angular.z >= 0 and sampletooright1 < 10) : # Tourner à droite zone 1
                 # self.velo.linear.x = 0.0
                 # self.velo.angular.z = 0.6
                 lin = 0.0
                 ang = 0.6
 
-            elif (old_speed.angular.z <= 0 and sampletooleft1 < 40) : # Tourner à gauche zone 1
+            elif (old_speed.angular.z <= 0 and sampletooleft1 < 10) : # Tourner à gauche zone 1
                 # self.velo.linear.x = 0.0
                 # self.velo.angular.z = -0.6
                 lin = 0.0
@@ -87,15 +87,15 @@ class AutoRobot(Node):
                 ang = old_speed.angular.z
 
 
-        elif (sampleleft2 > 30 or sampleright2 > 30) :
+        elif (sampleleft2 > 5 or sampleright2 > 5) :
 
-            if (sampleleft2 > sampleright2 and old_speed.angular.z >= 0 and sampletooright2 < 60) : # Tourner à droite zone 2
+            if (sampleleft2 > sampleright2 and old_speed.angular.z >= 0 and sampletooright2 < 20) : # Tourner à droite zone 2
                 # self.velo.linear.x = 0.1
                 # self.velo.angular.z = 0.6
                 lin = 0.1
                 ang = 0.6
 
-            elif (old_speed.angular.z <= 0 and sampletooright2 < 60) : # Tourner à gauche zone 2
+            elif (old_speed.angular.z <= 0 and sampletooleft2 < 20) : # Tourner à gauche zone 2
                 # self.velo.linear.x = 0.1
                 # self.velo.angular.z = -0.6
                 lin = 0.1
@@ -105,15 +105,15 @@ class AutoRobot(Node):
                 lin = old_speed.linear.x
                 ang = old_speed.angular.z
         
-        elif (sampleleft3 > 30 or sampleright3 > 30) :
+        elif (sampleleft3 > 5 or sampleright3 > 5) :
 
-            if (sampleleft3 > sampleright3 and old_speed.angular.z >= 0 and sampletooright3 < 80) : # Tourner à droite zone 3
+            if (sampleleft3 > sampleright3 and old_speed.angular.z >= 0 and sampletooright3 < 30) : # Tourner à droite zone 3
                 # self.velo.linear.x = 0.2
                 # self.velo.angular.z = 0.6
                 lin = 0.2
                 ang = 0.6
 
-            elif (old_speed.angular.z <= 0 and sampletooleft3 < 80) : # Tourner à gauche zone 3
+            elif (old_speed.angular.z <= 0 and sampletooleft3 < 30) : # Tourner à gauche zone 3
                 # self.velo.linear.x = 0.2
                 # self.velo.angular.z = -0.6
                 lin = 0.2
