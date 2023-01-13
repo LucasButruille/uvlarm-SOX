@@ -109,7 +109,7 @@ class AutoRobot(Node):
         self.velocity_publisher.publish(self.velo)
         
 
-def reactive_move(args=None) :
+def reactive_move_simu(args=None) :
     rclpy.init(args=args)
     autoRobot = AutoRobot()
     # Start the ros infinit loop with the AutoRobot node.

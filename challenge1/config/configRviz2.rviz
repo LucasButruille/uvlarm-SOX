@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /LaserScan1
-        - /TF1/Frames1
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 787
   - Class: rviz_common/Selection
@@ -86,6 +86,8 @@ Visualization Manager:
           Value: false
         base_link:
           Value: true
+        camera_link:
+          Value: false
         caster_back_link:
           Value: false
         caster_front_link:
@@ -100,11 +102,11 @@ Visualization Manager:
           Value: false
         laser_link:
           Value: false
+        left_wheel:
+          Value: false
         odom:
           Value: false
-        wheel_left_link:
-          Value: false
-        wheel_right_link:
+        right_wheel:
           Value: false
       Marker Scale: 1
       Name: TF
@@ -115,6 +117,8 @@ Visualization Manager:
         odom:
           base_footprint:
             base_link:
+              camera_link:
+                {}
               caster_back_link:
                 {}
               caster_front_link:
@@ -129,9 +133,9 @@ Visualization Manager:
                 {}
               laser_link:
                 {}
-              wheel_left_link:
+              left_wheel:
                 {}
-              wheel_right_link:
+              right_wheel:
                 {}
       Update Interval: 0
       Value: true
@@ -178,7 +182,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 6.216294765472412
+      Distance: 8.481390953063965
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -193,10 +197,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7653982043266296
+      Pitch: 0.8603980541229248
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.130403518676758
+      Yaw: 3.1404080390930176
     Saved: ~
 Window Geometry:
   Displays:
