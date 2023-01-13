@@ -12,12 +12,6 @@ class AutoRobot(Node):
         self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         self.velo = Twist()
-        # self.timer = self.create_timer(0.1, self.avoid_obstacles)
-        # self.lin = (float)(lin)
-        # self.ang = (float)(ang)
-        self.old_lin = (float)(0.01)
-        self.lin = (float)(0.1)
-        self.ang = (float)(0.0)
 
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
@@ -114,7 +108,6 @@ class AutoRobot(Node):
 
         self.velocity_publisher.publish(self.velo)
 
-        self.old_lin = self.lin
         
 
 def reactive_move(args=None) :
