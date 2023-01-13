@@ -112,34 +112,33 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        base_footprint:
-          base_link:
-            caster_back_link:
-              {}
-            caster_front_link:
-              {}
-            cliff_sensor_front_link:
-              {}
-            cliff_sensor_left_link:
-              {}
-            cliff_sensor_right_link:
-              {}
-            imu_link:
-              {}
-            laser_link:
-              {}
-            wheel_left_link:
-              {}
-            wheel_right_link:
-              {}
         odom:
-          {}
+          base_footprint:
+            base_link:
+              caster_back_link:
+                {}
+              caster_front_link:
+                {}
+              cliff_sensor_front_link:
+                {}
+              cliff_sensor_left_link:
+                {}
+              cliff_sensor_right_link:
+                {}
+              imu_link:
+                {}
+              laser_link:
+                {}
+              wheel_left_link:
+                {}
+              wheel_right_link:
+                {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: laser
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:

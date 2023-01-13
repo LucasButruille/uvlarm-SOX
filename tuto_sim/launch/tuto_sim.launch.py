@@ -8,7 +8,6 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     tbot_sim_path = get_package_share_directory('tbot_sim')
-    tuto_sim_path = get_package_share_directory('tuto_sim')
     launch_file_dir = os.path.join(tbot_sim_path, 'launch','includes')
 
     return LaunchDescription([

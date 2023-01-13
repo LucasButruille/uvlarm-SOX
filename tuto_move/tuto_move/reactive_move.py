@@ -6,6 +6,7 @@ from sensor_msgs.msg import PointCloud
 class AutoRobot(Node):
     def __init__(self):
         super().__init__('Auto')
+        #self.topic = '/cmd_vel'
         self.topic = '/multi/cmd_nav'
         # self.topic = '/cmd_vel'
         self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
@@ -14,6 +15,9 @@ class AutoRobot(Node):
         # self.timer = self.create_timer(0.1, self.avoid_obstacles)
         # self.lin = (float)(lin)
         # self.ang = (float)(ang)
+        self.old_lin = (float)(0.01)
+        self.lin = (float)(0.1)
+        self.ang = (float)(0.0)
 
     def avoid_obstacles(self, pntcld) :
         obstacles = pntcld.points
@@ -109,6 +113,9 @@ class AutoRobot(Node):
         self.velo.angular.z = ang
 
         self.velocity_publisher.publish(self.velo)
+
+        self.old_lin = self.lin
+        
 
 def reactive_move(args=None) :
     rclpy.init(args=args)
