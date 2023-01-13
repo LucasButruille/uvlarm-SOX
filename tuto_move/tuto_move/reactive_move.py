@@ -56,7 +56,7 @@ class AutoRobot(Node):
 
         if (sampleleft1 > 30 or sampleright1 > 30) :
 
-            if (sampleleft1 > sampleright1) : # Tourner à droite zone 1
+            if (sampleleft1 > sampleright1 and old_speed.angular.z >= 0) : # Tourner à droite zone 1
                 # self.velo.linear.x = 0.0
                 # self.velo.angular.z = 0.6
                 lin = 0.0
