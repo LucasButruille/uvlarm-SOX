@@ -136,7 +136,7 @@ class AutoRobot_Simu(Node):
                 print("S3")
 
         # Zones éloignées sur les cotés 
-        elif (sampletooleft1 > 10 or sampletooright1 > 10):
+        elif (sampletooleft1 > 5 or sampletooright1 > 5):
             if (sampletooleft1 > sampletooright1) :         # Tourner légerement à droite
                 lin = 0.4
                 ang = -0.6
@@ -144,7 +144,7 @@ class AutoRobot_Simu(Node):
                 lin = 0.4
                 ang = 0.6
 
-        elif (sampletooleft2 > 10 or sampletooright2 > 10) :
+        elif (sampletooleft2 > 5 or sampletooright2 > 5) :
             if (sampletooleft2 > sampletooright2) :         # Tourner légerement à droite
                 lin = 0.4
                 ang = -0.4
@@ -152,7 +152,7 @@ class AutoRobot_Simu(Node):
                 lin = 0.4
                 ang = 0.4
 
-        elif (sampletooleft3 > 10 or sampletooright3 > 10) :
+        elif (sampletooleft3 > 5 or sampletooright3 > 5) :
             if (sampletooleft3 > sampletooright3) :         # Tourner légerement à droite
                 lin = 0.4
                 ang = -0.3
