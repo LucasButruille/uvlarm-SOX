@@ -1,21 +1,23 @@
 # grp-SOX repository for the UV-LARM (IMT Nord Europe)
 
 ## Description
+Ce répertoire contient :
 
 4 packages :
-	challenge1 	(contient les fichiers launch du challenge1)
-	tuto_move 	(contient les fichiers python concernant la navigation)
-	tuto_sim	(contient un fichier launch pour utiliser gazebo et rviz)
-	tuto_vision	(contient nos premiers tests de vision)
 
-3 fichiers launch dans le pkg challenge :
-	tbot.launch.py
-	simulation.launch.py
-	visualize.launch.py
+1. challenge1 	(les fichiers launch du challenge1)
+2. tuto_move 	(les fichiers python concernant la navigation)
+3. tuto_sim		(un fichier launch pour utiliser gazebo et rviz)
+4. tuto_vision	(nos premiers tests de vision)
+
+Les 3 fichiers launch du pkg challenge sont :
+1. tbot.launch.py
+2. simulation.launch.py
+3. visualize.launch.py
 
 ## Installation
 
-On utilise ubuntu 20.04 et on suppose ros2-foxy déjà installé (`https://docs.ros.org/en/foxy/Installation.html`) avec le workspace `~/ros2_ws/` crée.
+On utilise ubuntu 20.04 et on suppose ros2-foxy déjà installé (https://docs.ros.org/en/foxy/Installation.html) avec le workspace `~/ros2_ws/` crée.
 
 **Etape 1 :** 
 
