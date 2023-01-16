@@ -5,6 +5,10 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import PointCloud
 from kobuki_ros_interfaces.msg import WheelDropEvent
+from kobuki_ros_interfaces.msg import BumperEvent
+from kobuki_ros_interfaces.msg import ButtonEvent
+from kobuki_ros_interfaces.msg import Led
+from kobuki_ros_interfaces.msg import Sound
 
 class AutoRobot(Node):
     def __init__(self):
@@ -12,24 +16,56 @@ class AutoRobot(Node):
         #self.topic = '/cmd_vel'
         self.topic = '/multi/cmd_nav'
         # self.topic = '/cmd_vel'
-        self.create_subscription( PointCloud, 'obstacles', self.avoid_obstacles, 10)
+        self.create_subscription(PointCloud, 'obstacles', self.Avoid_obstacles, 10)
         self.velocity_publisher = self.create_publisher(Twist, self.topic, 10)
         self.velo = Twist()
 
-        self.create_subscription( WheelDropEvent, '/events/wheel_drop', self.WheelDrop, 10)
+        self.create_subscription(WheelDropEvent, '/events/wheel_drop', self.WheelDrop, 10)
+
+        self.create_subscription(ButtonEvent, '/events/button', self.Button, 10)
+        self.led1_publisher = self.create_publisher(Led, '/commands/led1', 10)
+        self.led1 = Led()
+        self.led1.value = 3
+        self.led1_publisher.publish(self.led1)
+
+        self.sound_publisher = self.create_publisher(Sound, '/commands/sound', 10)
+        self.melodie = Sound()
+        
+        self.create_subscription(BumperEvent, '/events/bumper', self.Bumper, 10)
+        self.b0 = False
+
         # self.timer = self.create_timer(0.1, self.avoid_obstacles)
         # self.lin = (float)(lin)
         # self.ang = (float)(ang)
-        self.arret = False
 
-    def WheelDrop(self, DropEvent) :
-        if DropEvent.state == 1 :
-            self.arret = True
-        else :
-            self.arret = False
+    def WheelDrop(self, drop_event) :
+        if drop_event.state == 1 :
+            self.b0 = False
+            self.led1.value = 3
+            self.led1_publisher.publish(self.led1)
+            self.melodie.value = 2
+            self.sound_publisher.publish(self.melodie)
 
-    def avoid_obstacles(self, pntcld) :
-        if self.arret == False :
+
+    def Bumper(self, bump_event) :
+        if bump_event.state == 1 :
+            self.b0 = False
+            self.led1.value = 3
+            self.led1_publisher.publish(self.led1)
+            self.melodie.value = 2
+            self.sound_publisher.publish(self.melodie)
+
+    def Button(self, button_event) :
+        if button_event.button == 0 and button_event.state == 0 :
+            self.b0 = True
+            self.led1.value = 1
+            self.led1_publisher.publish(self.led1)
+            self.melodie.value = 0
+            self.sound_publisher.publish(self.melodie)
+
+
+    def Avoid_obstacles(self, pntcld) :
+        if self.b0 == True :
             obstacles = pntcld.points
             sampleright1 = 0
             sampleright2 = 0
@@ -106,19 +142,19 @@ class AutoRobot(Node):
             elif (sampleleft2 > 10 or sampleright2 > 10) :
 
                 if (sampleleft2 > sampleright2 and old_speed.angular.z <= 0 and sampletooright2 < 10) : # Tourner à droite zone 2
-                    lin = 0.1
+                    lin = 0.2
                     ang = -0.6
 
                 elif (sampleright2 > sampleleft2 and old_speed.angular.z >= 0 and sampletooleft2 < 10) : # Tourner à gauche zone 2
-                    lin = 0.1
+                    lin = 0.2
                     ang = 0.6
 
                 else :
                     if old_speed.angular.z <= 0:
-                        lin = 0.1
+                        lin = 0.2
                         ang = -0.6
                     else:
-                        lin = 0.1
+                        lin = 0.2
                         ang = 0.6
             
             # Zone 3
@@ -143,30 +179,30 @@ class AutoRobot(Node):
             # Zones éloignées sur les cotés 
             elif (sampletooleft1 > 5 or sampletooright1 > 5):
                 if (sampletooleft1 > sampletooright1) :         # Tourner légerement à droite
-                    lin = 0.4
-                    ang = -0.6
+                    lin = 0.8
+                    ang = -0.8
                 else :                                          # Tourner légerement à gauche
-                    lin = 0.4
-                    ang = 0.6
+                    lin = 0.8
+                    ang = 0.8
 
             elif (sampletooleft2 > 5 or sampletooright2 > 5) :
                 if (sampletooleft2 > sampletooright2) :         # Tourner légerement à droite
-                    lin = 0.4
-                    ang = -0.4
+                    lin = 0.8
+                    ang = -0.6
                 else :                                          # Tourner légerement à gauche
-                    lin = 0.4
-                    ang = 0.4
+                    lin = 0.8
+                    ang = 0.6
 
             elif (sampletooleft3 > 5 or sampletooright3 > 5) :
                 if (sampletooleft3 > sampletooright3) :         # Tourner légerement à droite
-                    lin = 0.4
-                    ang = -0.3
+                    lin = 0.8
+                    ang = -0.4
                 else :                                          # Tourner légerement à gauche
-                    lin = 0.4
-                    ang = 0.3
+                    lin = 0.8
+                    ang = 0.4
 
             else :
-                lin = 0.4
+                lin = 0.8
                 ang = 0.0
 
             
