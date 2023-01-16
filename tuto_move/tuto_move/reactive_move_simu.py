@@ -64,32 +64,29 @@ class AutoRobot_Simu(Node):
                 elif point.x >= 0.60 :
                     sampletooright3 += 1
         
-        print(" ")
-        print('sampletooleft1 : ' + (str)(sampletooleft1) + ' | ' + ' sampleleft1 :' + (str)(sampleleft1) + ' | ' + ' sampleright1 :' + (str)(sampleright1) + ' | ' + ' sampletooright1 :' + (str)(sampletooright1))
-        print('sampletooleft2 : ' + (str)(sampletooleft2) + ' | ' + ' sampleleft2 :' + (str)(sampleleft2) + ' | ' + ' sampleright2 :' + (str)(sampleright2) + ' | ' + ' sampletooright2 :' + (str)(sampletooright2))
-        print('sampletooleft3 : ' + (str)(sampletooleft3) + ' | ' + ' sampleleft3 :' + (str)(sampleleft3) + ' | ' + ' sampleright3 :' + (str)(sampleright3) + ' | ' + ' sampletooright3 :' + (str)(sampletooright3))
+        # print(" ")
+        # print('sampletooleft1 : ' + (str)(sampletooleft1) + ' | ' + ' sampleleft1 :' + (str)(sampleleft1) + ' | ' + ' sampleright1 :' + (str)(sampleright1) + ' | ' + ' sampletooright1 :' + (str)(sampletooright1))
+        # print('sampletooleft2 : ' + (str)(sampletooleft2) + ' | ' + ' sampleleft2 :' + (str)(sampleleft2) + ' | ' + ' sampleright2 :' + (str)(sampleright2) + ' | ' + ' sampletooright2 :' + (str)(sampletooright2))
+        # print('sampletooleft3 : ' + (str)(sampletooleft3) + ' | ' + ' sampleleft3 :' + (str)(sampleleft3) + ' | ' + ' sampleright3 :' + (str)(sampleright3) + ' | ' + ' sampletooright3 :' + (str)(sampletooright3))
         
         # Zone 1
         if (sampleleft1 > 10 or sampleright1 > 10) : # Si plus de 10 points dans la zone 1, gauche ou droite
 
             if (sampleleft1 > sampleright1 and old_speed.angular.z <= 0 and sampletooright1 < 10) : # Tourner à droite zone 1
                 lin = 0.0
-                ang = -0.8
-                print("D1")
+                ang = -1.0
 
             elif (sampleright1 > sampleleft1 and old_speed.angular.z >= 0 and sampletooleft1 < 10) : # Tourner à gauche zone 1
                 lin = 0.0
-                ang = 0.8
-                print("G1")
+                ang = 1.0
             
             else :
                 if old_speed.angular.z <= 0:
                     lin = 0.0
-                    ang = -0.8
+                    ang = -1.0
                 else:
                     lin = 0.0
-                    ang = 0.8
-                print("S1")
+                    ang = 1.0
 
         # Zone 2
         elif (sampleleft2 > 10 or sampleright2 > 10) :
@@ -97,12 +94,10 @@ class AutoRobot_Simu(Node):
             if (sampleleft2 > sampleright2 and old_speed.angular.z <= 0 and sampletooright2 < 10) : # Tourner à droite zone 2
                 lin = 0.1
                 ang = -0.6
-                print("D2")
 
             elif (sampleright2 > sampleleft2 and old_speed.angular.z >= 0 and sampletooleft2 < 10) : # Tourner à gauche zone 2
                 lin = 0.1
                 ang = 0.6
-                print("G2")
 
             else :
                 if old_speed.angular.z <= 0:
@@ -111,7 +106,6 @@ class AutoRobot_Simu(Node):
                 else:
                     lin = 0.1
                     ang = 0.6
-                print("S2")
         
         # Zone 3
         elif (sampleleft3 > 10 or sampleright3 > 10) :
@@ -119,12 +113,10 @@ class AutoRobot_Simu(Node):
             if (sampleleft3 > sampleright3 and old_speed.angular.z <= 0 and sampletooright3 < 10) : # Tourner à droite zone 3
                 lin = 0.4
                 ang = -0.6
-                print("D3")
 
             elif (sampleright3 > sampleleft3 and old_speed.angular.z >= 0 and sampletooleft3 < 10) : # Tourner à gauche zone 3
                 lin = 0.4
                 ang = 0.6
-                print("G3")
 
             else :
                 if old_speed.angular.z <= 0:
@@ -133,7 +125,6 @@ class AutoRobot_Simu(Node):
                 else:
                     lin = 0.4
                     ang = 0.6
-                print("S3")
 
         # Zones éloignées sur les cotés 
         elif (sampletooleft1 > 5 or sampletooright1 > 5):
@@ -163,7 +154,6 @@ class AutoRobot_Simu(Node):
         else :
             lin = 0.4
             ang = 0.0
-            print("GO")
 
         
         # Accélération
@@ -173,23 +163,22 @@ class AutoRobot_Simu(Node):
             else :
                 lin = min(lin, old_speed.linear.x * 1.10)
         
-        elif (old_speed.angular.z < ang) : # Angulaire de 20%
-            if (old_speed.angular.z == 0) :
-                ang = 0.05
-            else :
-                ang = min(ang, old_speed.angular.z * 1.20)
+        # elif (old_speed.angular.z < ang) : # Angulaire de 20%
+        #     if (old_speed.angular.z == 0) :
+        #         ang = 0.05
+        #     else :
+        #         ang = min(ang, old_speed.angular.z * 1.20)
 
-        # Décélération
-        elif (old_speed.linear.x > lin and lin != 0) : # Linéaire de 30%
-            lin = max(lin, old_speed.linear.x * 0.7)
+        # # Décélération
+        # elif (old_speed.linear.x > lin and lin != 0) : # Linéaire de 30%
+        #     lin = max(lin, old_speed.linear.x * 0.7)
         
-        elif (old_speed.angular.z > ang and ang != 0) : # Angulaire de 30%
-            ang = max(ang, old_speed.angular.z * 0.7)
+        # elif (old_speed.angular.z > ang and ang != 0) : # Angulaire de 30%
+        #     ang = max(ang, old_speed.angular.z * 0.7)
         
-        else:
-            print("Vitesse maintenue")
+        # else:
+        #     print("Vitesse maintenue")
         
-        print('lin : ' + str(lin) + ' | ang : ' + str(ang))
         self.velo.linear.x = lin
         self.velo.angular.z = ang
 
