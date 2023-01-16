@@ -19,6 +19,7 @@ def generate_launch_description():
             package='rviz2',
             executable='rviz2',
             arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/challenge1/config/configRviz2.rviz']
+            # arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/challenge1/config/slam_config.rviz']
         ),
 
         # Node(
