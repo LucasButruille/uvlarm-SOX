@@ -22,13 +22,7 @@ setup(
         'console_scripts': [
             'simple_request = tuto_vision.simple_request:main',
             'camera_image = tuto_vision.camera_image:main',
-<<<<<<< HEAD
-            'vision = tuto_vision.vision:template_matching'
-=======
-            'segmentation couleur = tuto_vision.vision:segmentation_couleur',
-            'extract_bin = tuto_vision.vision:Extract_bin',
-            'template_matching = tuto_vision.vision:template_matching',
->>>>>>> 7f7281bbf6675d3c4a802776eab16a94b10e5214
+            'vision = tuto_vision.vision:main'
         ],
     },
 )
