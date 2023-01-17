@@ -12,6 +12,7 @@ from rclpy.node import Node
 import rclpy
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
+import time
 
 class Camera(Node) :
 
@@ -136,6 +137,8 @@ class Camera(Node) :
                 msg_infra.header.stamp = msg_image.header.stamp
                 msg_infra.header.frame_id = "infrared_2"
                 self.infra_publisher_2.publish(msg_infra)
+
+                time.sleep(0.5)
 
         finally:
             # Stop streaming

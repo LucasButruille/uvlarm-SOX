@@ -174,3 +174,4 @@ def template_matching() :
     
     cv2.imshow('Fenetre', img_rgb)
     cv2.waitKey(0)
+
