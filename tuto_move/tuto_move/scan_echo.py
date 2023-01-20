@@ -14,7 +14,7 @@ class ScanInterpret(Node):
 
     def scan_callback(self, scanMsg):
         self.obstacles = []
-        angle= scanMsg.angle_min
+        angle = scanMsg.angle_min
         for aDistance in scanMsg.ranges :
             if 0.01 < aDistance and aDistance < 1.0 :
                 # aPoint= [
