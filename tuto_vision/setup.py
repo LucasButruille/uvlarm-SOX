@@ -22,7 +22,8 @@ setup(
         'console_scripts': [
             'simple_request = tuto_vision.simple_request:main',
             'camera_image = tuto_vision.camera_image:main',
-            'vision = tuto_vision.vision:main'
+            'vision = tuto_vision.vision:main',
+            'distance = tuto_vision.distance:main',
         ],
     },
 )

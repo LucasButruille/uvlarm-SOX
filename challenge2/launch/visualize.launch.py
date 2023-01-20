@@ -1,14 +1,22 @@
+from launch import LaunchDescription
+from launch_ros.actions import Node
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import IncludeLaunchDescription
 import os
 from ament_index_python.packages import get_package_share_directory
-from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
 
 def generate_launch_description():
 
+    slam_toolbox_path = get_package_share_directory('slam_toolbox')
+    dir = os.path.join(slam_toolbox_path, 'launch')
+
     return LaunchDescription([
         
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([dir, '/online_sync_launch.py']),
+            launch_arguments = {'use_sim_time' : 'False'}.items(),
+        ),
+
         Node(
             package='teleop_twist_keyboard',
             executable='teleop_twist_keyboard',

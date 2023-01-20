@@ -48,34 +48,12 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_footprint:
-          Value: false
-        base_link:
+        laser:
           Value: true
-        camera_link:
-          Value: false
-        caster_back_link:
-          Value: false
-        caster_front_link:
-          Value: false
-        cliff_sensor_front_link:
-          Value: false
-        cliff_sensor_left_link:
-          Value: false
-        cliff_sensor_right_link:
-          Value: false
-        imu_link:
-          Value: false
-        laser_link:
-          Value: false
-        left_wheel:
-          Value: false
         map:
           Value: true
         odom:
           Value: true
-        right_wheel:
-          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -83,30 +61,10 @@ Visualization Manager:
       Show Names: false
       Tree:
         map:
-          {}
-        odom:
-          base_footprint:
-            base_link:
-              camera_link:
-                {}
-              caster_back_link:
-                {}
-              caster_front_link:
-                {}
-              cliff_sensor_front_link:
-                {}
-              cliff_sensor_left_link:
-                {}
-              cliff_sensor_right_link:
-                {}
-              imu_link:
-                {}
-              laser_link:
-                {}
-              left_wheel:
-                {}
-              right_wheel:
-                {}
+          laser:
+            {}
+          odom:
+            {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -195,6 +153,25 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /goal_pose
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -238,25 +215,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 9.672209739685059
+      Distance: 25.622623443603516
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 7.2013959884643555
-        Y: -5.086087226867676
-        Z: -0.030869480222463608
+        X: 0.017956234514713287
+        Y: -4.50686502456665
+        Z: 0.5453096032142639
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5397963523864746
+      Pitch: 0.7847970724105835
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.1153980493545532
+      Yaw: 1.4103977680206299
     Saved: ~
 Window Geometry:
   Displays:
