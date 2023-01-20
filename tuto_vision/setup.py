@@ -22,8 +22,9 @@ setup(
         'console_scripts': [
             'simple_request = tuto_vision.simple_request:main',
             'camera_image = tuto_vision.camera_image:main',
-            'vision = tuto_vision.vision:template_matching',
+            'vis = tuto_vision.vision:template_matching',
             'take_picture = tuto_vision.take_picture:photo'
+            'vision = tuto_vision.vision:main'
         ],
     },
 )

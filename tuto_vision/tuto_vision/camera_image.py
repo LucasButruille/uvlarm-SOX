@@ -44,7 +44,7 @@ class Camera(Node) :
                 found_rgb = True
 
         if not (found_rgb):
-            print("Depth camera equired !!!")
+            print("Depth camera required !!!")
             exit(0)
 
         config.enable_stream(rs.stream.color, 848, 480, rs.format.bgr8, 60)
@@ -89,9 +89,9 @@ class Camera(Node) :
                 images = np.hstack((color_image, depth_colormap)) # supose that depth_colormap_dim == color_colormap_dim (640x480) otherwize: resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
 
                 # Show images
-                cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
-                cv2.imshow('RealSense', images)
-                cv2.waitKey(1)
+                # cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
+                # cv2.imshow('RealSense', images)
+                # cv2.waitKey(1)
                 
                 # Frequency:
                 if count == 10 :
