@@ -8,13 +8,16 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
 
     slam_toolbox_path = get_package_share_directory('slam_toolbox')
+    config_path = get_package_share_directory('challenge2')
     dir = os.path.join(slam_toolbox_path, 'launch')
+    param_file = os.path.join(config_path, 'config', 'congig_slam_toolbox.yaml')
 
     return LaunchDescription([
         
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([dir, '/online_sync_launch.py']),
             launch_arguments = {'use_sim_time' : 'False'}.items(),
+            parameters = param_file,
         ),
 
         Node(
