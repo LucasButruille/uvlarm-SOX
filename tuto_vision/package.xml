@@ -11,10 +11,7 @@
   <depend>rclpy</depend>
   <depend>sensor_msgs</depend>
   <depend>cv_bridge</depend>
-<<<<<<< HEAD
-=======
   <depend>cv2</depend>
->>>>>>> 39a8286083d102e4d9ab016604f90e98250ed767
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
