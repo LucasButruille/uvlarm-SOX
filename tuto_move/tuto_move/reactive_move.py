@@ -58,6 +58,7 @@ class AutoRobot(Node):
         self.linear = 0.0
         self.angular = 0.0
         self.detect_tab = []
+        self.objet = -1
 
     def WheelDrop(self, drop_event) :
         if drop_event.state == 1 :
@@ -134,57 +135,62 @@ class AutoRobot(Node):
             self.velocity_publisher.publish(self.velo)
 
     def Detection_objet(self, detect) :
-        if len(self.detect_tab) < 22 :
+        if len(self.detect_tab) < 52 :
             if detect.data == False :
                 self.detect_tab.append(-1)
             else :
                 self.detect_tab.append(+1)
 
-            self.objet = -1
-
         else :
+            count = 0
             for i in self.detect_tab :
-                count += self.detect_tab(i)
+                count += self.detect_tab[i]
 
             self.detect_tab = []
             
-            if count < 0 :
-                self.objet = -1
-            else : 
+            if count > 10 :
                 self.objet = +1
+            else :
+                self.objet = -1
 
 
 
     def Distance(self, dist) :
-        if dist.data < 0.6 or dist.data > 0.8 :
-            self.distance = False
+        if dist.data < 0.6 :
+            self.distance = -1
+
+        elif dist.data > 0.8 :
+            self.distance = +1
+
         else :
-            self.distance = True
+            self.distance = 0
 
     def Bottle_position(self, pos):
-        if pos < 424 - 100 :
+        if pos.data < 424 - 100 :
             self.position = -1
-        elif pos > 424 + 100 :
+        elif pos.data > 424 + 100 :
             self.position = +1
         else :
             self.position = 0
 
     def Avoid_obstacles(self) :
+
+        obstacles = self.pntcld.points
+        sampleright1 = 0
+        sampleright2 = 0
+        sampleright3 = 0
+        sampleleft1 = 0
+        sampleleft2 = 0
+        sampleleft3 = 0
+        sampletooleft1 = 0
+        sampletooleft2 = 0
+        sampletooleft3 = 0
+        sampletooright1 = 0
+        sampletooright2 = 0
+        sampletooright3 = 0
+        old_speed = self.velo
+
         if self.objet == -1 :
-            obstacles = self.pntcld.points
-            sampleright1 = 0
-            sampleright2 = 0
-            sampleright3 = 0
-            sampleleft1 = 0
-            sampleleft2 = 0
-            sampleleft3 = 0
-            sampletooleft1 = 0
-            sampletooleft2 = 0
-            sampletooleft3 = 0
-            sampletooright1 = 0
-            sampletooright2 = 0
-            sampletooright3 = 0
-            old_speed = self.velo
 
             for point in obstacles :
                 if point.y >= 0 and point.y < 0.20 :
@@ -320,7 +326,10 @@ class AutoRobot(Node):
                 self.ang = 0.4
 
             else :
-                if self.distance == False :
+                if self.distance == -1 :
+                    self.lin = -0.1
+                    self.ang = 0.0
+                elif self.distance == +1 :
                     self.lin = 0.1
                     self.ang = 0.0
                 else :
@@ -328,7 +337,7 @@ class AutoRobot(Node):
                     self.ang = 0.0
         
         # Accélération
-        if (old_speed.linear.x < self.lin) : # Linéaire de 10%
+        if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
             if (old_speed.linear.x == 0) :
                 self.lin = 0.05
             else :
