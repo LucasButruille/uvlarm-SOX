@@ -11,6 +11,12 @@ def generate_launch_description():
         
 
         Node(
+            package='tbot_pytools',
+            executable='multiplexer',
+            prefix='gnome-terminal -x'
+        ),
+
+        Node(
             package='teleop_twist_keyboard',
             executable='teleop_twist_keyboard',
             prefix='gnome-terminal -x'
