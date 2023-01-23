@@ -271,8 +271,6 @@ class Camera(Node) :
                         if len(self.dist_tab)>20:
                             self.distance_moyenne = round(np.mean(self.dist_tab),2)
                             self.dist_tab = []
-                        else :
-                            self.distance_moyenne = 0
 
                         
                         # Point au milieu de la bouteille
@@ -293,7 +291,11 @@ class Camera(Node) :
                         # Affichage du rapport
                         # cv2.putText(frame, f"rapport : {int(h/w)}", (10,60), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
                         # cv2.putText(ImageOrange, f"rapport : {round(h/w, 2)}", (10,60), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
-
+                    else:
+                        self.dist_tab = []
+                        self.distance_moyenne = 0
+                else : 
+                    self.objet.data = False
                 # # Contours Mask Noir
                 # elementsNoir=cv2.findContours(MaskNoir, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
                 # if len(elementsNoir) > 0:
