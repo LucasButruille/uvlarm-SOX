@@ -279,12 +279,10 @@ class Camera(Node) :
                         cv2.circle(frame, (int(self.x_middle), int(self.y_middle)), 5, self.color_info, -1)
                         cv2.circle(ImageOrange, (int(self.x_middle), int(self.y_middle)), 5, self.color_info, -1)
                         
-                        if self.distance_moyenne != 0:
-                            # Affichage de la distance
-                            cv2.putText(frame, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
-                            cv2.putText(ImageOrange, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
-                            self.dist.data = (float)(self.distance_moyenne)
-                            self.distancepub.publish(self.dist)
+                        # Affichage de la distance
+                        cv2.putText(frame, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
+                        cv2.putText(ImageOrange, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
+                        
                         
 
                         # self.objetmsg.data = f"Bouteille Orange à {self.distance_moyenne}m."
@@ -355,7 +353,8 @@ class Camera(Node) :
                 cv2.waitKey(1)
 
                 
-
+                self.dist.data = (float)(self.distance_moyenne)
+                self.distancepub.publish(self.dist)
                 self.detection.publish(self.objet)
                 self.bottlepospub.publish(self.x_bottle)
 
