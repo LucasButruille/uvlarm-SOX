@@ -251,8 +251,9 @@ class Camera(Node) :
                     x,y,self.w,self.h = cv2.boundingRect(c)
                     self.x_middle, self.y_middle = int(x+self.w/2), int(y+self.h/2)
                     self.rapport1 = round(self.h/self.w, 1)
-                    self.rapport2 = round(self.w/self.h, 1)
-                    if (self.rapport1 > 1.5 and self.rapport1 < 3) or (self.rapport2 > 1.5 and self.rapport2 < 3):
+                    # self.rapport2 = round(self.w/self.h, 1)
+                    # if (self.rapport1 > 1.5 and self.rapport1 < 3) or (self.rapport2 > 1.5 and self.rapport2 < 3):
+                    if (self.rapport1 > 1.5 and self.rapport1 < 3):
                         self.objet.data = True
                         self.x_bottle.data = self.x_middle
                         # Get distance
@@ -260,7 +261,7 @@ class Camera(Node) :
                         dx ,dy, dz = rs.rs2_deproject_pixel_to_point(color_intrin, [self.x_middle,self.y_middle], depth)
                         distance = round(math.sqrt(((dx)**2) + ((dy)**2) + ((dz)**2)),2)
                         
-                        if distance < 3.0 and distance > 0.1:
+                        if distance < 1.5 and distance > 0.1:
                             self.dist_tab.append(distance)
 
                         if len(self.dist_tab)>10:
