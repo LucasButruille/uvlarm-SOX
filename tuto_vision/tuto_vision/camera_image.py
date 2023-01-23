@@ -254,11 +254,6 @@ class Camera(Node) :
                     self.rapport2 = round(self.w/self.h, 1)
                     if (self.rapport1 > 1.5 and self.rapport1 < 3) or (self.rapport2 > 1.5 and self.rapport2 < 3):
                         self.objet.data = True
-                    else:
-                        self.objet.data = False
-                        # self.objetmsg.data = "Pas de bouteille"
-
-                    if self.objet.data:
                         self.x_bottle.data = self.x_middle
                         # Get distance
                         depth = depth_frame2.get_distance(self.x_middle, self.y_middle)
@@ -280,22 +275,17 @@ class Camera(Node) :
                         # Affichage de la distance
                         cv2.putText(frame, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
                         cv2.putText(ImageOrange, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
-                        
-                        
-
-                        # self.objetmsg.data = f"Bouteille Orange à {self.distance_moyenne}m."
-
-                        # Coordonnées de la bouteille
-                        # cv2.putText(frame, f"x : {self.x_middle}, y : {self.y_middle}", (10,30), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
-                        # cv2.putText(ImageOrange, f"x : {self.x_middle}, y : {self.y_middle}", (10,30), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
-                        # Affichage du rapport
-                        # cv2.putText(frame, f"rapport : {int(h/w)}", (10,60), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
-                        # cv2.putText(ImageOrange, f"rapport : {round(h/w, 2)}", (10,60), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
+                    
                     else:
+                        self.objet.data = False
+                        # self.objetmsg.data = "Pas de bouteille"
                         self.dist_tab = []
                         self.distance_moyenne = 0
+
                 else : 
                     self.objet.data = False
+
+
                 # # Contours Mask Noir
                 # elementsNoir=cv2.findContours(MaskNoir, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
                 # if len(elementsNoir) > 0:
@@ -343,8 +333,6 @@ class Camera(Node) :
                 #         # Affichage du rapport
                 #         # cv2.putText(frame, f"rapport : {int(h/w)}", (10,60), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
                 #         # cv2.putText(ImageOrange, f"rapport : {round(h/w, 2)}", (10,60), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
-
-
 
 
 
