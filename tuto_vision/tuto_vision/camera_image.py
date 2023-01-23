@@ -264,10 +264,9 @@ class Camera(Node) :
                             self.dist_tab.append(distance)
 
                         if len(self.dist_tab)>20:
-                            self.distance_moyenne = round(np.mean(self.dist_tab),2)
+                            self.distance_moyenne = round(np.median(self.dist_tab),2)
                             self.dist_tab = []
 
-                        
                         # Point au milieu de la bouteille
                         cv2.circle(frame, (int(self.x_middle), int(self.y_middle)), 5, self.color_info, -1)
                         cv2.circle(ImageOrange, (int(self.x_middle), int(self.y_middle)), 5, self.color_info, -1)
