@@ -20,8 +20,7 @@ def generate_launch_description():
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([config_path, '/mon_sync_launch.py']),
-            launch_arguments = {'use_sim_time' : 'False'}.items(),
-            
+            launch_arguments = {'use_sim_time' : 'False'}.items(),   
         ),
 
         IncludeLaunchDescription(
