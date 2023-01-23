@@ -24,12 +24,6 @@ def generate_launch_description():
             
         ),
 
-        Node(
-            package='tbot_pytools',
-            executable='multiplexer',
-            prefix='gnome-terminal -x'
-        ),
-
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([tbot_start_launch_dir, '/minimal.launch.py'])
         ),
