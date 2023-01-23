@@ -162,6 +162,9 @@ class AutoRobot(Node):
         elif dist.data > 0.8 :
             self.distance = +1
 
+        elif dist.data == 0.0 :
+            self.distance = +2
+
         else :
             self.distance = 0
 
@@ -190,7 +193,7 @@ class AutoRobot(Node):
         sampletooright3 = 0
         old_speed = self.velo
 
-        if self.objet == -1 :
+        if self.objet == -1 or self.distance == +2 :
 
             for point in obstacles :
                 if point.y >= 0 and point.y < 0.20 :
