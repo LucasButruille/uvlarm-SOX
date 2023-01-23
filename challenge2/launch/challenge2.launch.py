@@ -10,25 +10,18 @@ def generate_launch_description():
     config_path = get_package_share_directory('challenge2')    
     tbot_start_path = get_package_share_directory('tbot_start')
     tbot_start_launch_dir = os.path.join(tbot_start_path, 'launch')
+    nav_path = get_package_share_directory('nav2_bringup')
 
     return LaunchDescription([
         
         IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([nav_path, '/launch/navigation_launch.py']),            
+        ),
+
+        IncludeLaunchDescription(
             PythonLaunchDescriptionSource([config_path, '/mon_sync_launch.py']),
             launch_arguments = {'use_sim_time' : 'False'}.items(),
             
-        ),
-
-        Node(
-            package='teleop_twist_keyboard',
-            executable='teleop_twist_keyboard',
-            prefix='gnome-terminal -x'
-        ),
-        
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/challenge2/config/slam_config.rviz']
         ),
 
         Node(
