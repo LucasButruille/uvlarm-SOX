@@ -338,10 +338,8 @@ class AutoRobot(Node):
         
         # Accélération
         if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
-            if (old_speed.linear.x == 0) :
+            if (old_speed.linear.x <= 0) :
                 self.lin = 0.05
-            elif old_speed.linear.x < 0 :
-                self.lin = min(self.lin, old_speed.linear.x * 0.90)
             else :
                 self.lin = min(self.lin, old_speed.linear.x * 1.10)
         
