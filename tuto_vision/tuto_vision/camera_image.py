@@ -10,7 +10,7 @@ import numpy as np
 import sys, cv2, math, time
 from rclpy.node import Node
 import rclpy
-from std_msgs.msg import Bool
+from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import time
@@ -25,14 +25,15 @@ class Camera(Node) :
         # self.infra_publisher_2 = self.create_publisher(Image, 'infrared_2', 10)
         self.timer = self.create_timer(0.1, self.pub_cam)
 
-        self.detection = self.create_publisher(Bool, '/detection_objet', 10)
+        self.detection = self.create_publisher(String, '/detection_objet', 10)
         self.lo = np.array([7, 200, 170])
         self.hi = np.array([30, 255,255])
         self.color_info = (0, 0, 255)
         self.hsv_px = [0,0,0]
         self.kernel = np.ones((7, 7), np.uint8)
         self.bridge = CvBridge()
-        self.objet = Bool()
+        self.objet = False
+        self.objetmsg = String()
         self.w, self.h = 0, 0
         self.rapport1 = 0
         self.rapport2 = 0
@@ -207,11 +208,12 @@ class Camera(Node) :
                     self.rapport1 = round(self.h/self.w, 1)
                     self.rapport2 = round(self.w/self.h, 1)
                     if (self.rapport1 > 1.5 and self.rapport1 < 3) or (self.rapport2 > 1.5 and self.rapport2 < 3):
-                        self.objet.data = True
+                        self.objet = True
                     else:
-                        self.objet.data = False
+                        self.objet = False
+                        self.objetmsg.data = "Pas de bouteille"
 
-                    if self.objet.data:
+                    if self.objet:
                         # Get distance
                         depth = depth_frame2.get_distance(self.x_middle, self.y_middle)
                         dx ,dy, dz = rs.rs2_deproject_pixel_to_point(color_intrin, [self.x_middle,self.y_middle], depth)
@@ -233,6 +235,9 @@ class Camera(Node) :
                         # Affichage de la distance
                         cv2.putText(frame, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
                         cv2.putText(image2, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
+                        
+                        self.objetmsg.data = f"Bouteille à {self.distance_moyenne}m."
+
                         # Coordonnées de la bouteille
                         # cv2.putText(frame, f"x : {self.x_middle}, y : {self.y_middle}", (10,30), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
                         # cv2.putText(image2, f"x : {self.x_middle}, y : {self.y_middle}", (10,30), cv2.FONT_HERSHEY_DUPLEX, 0.8, self.color_info, 1, cv2.LINE_AA)
@@ -246,10 +251,10 @@ class Camera(Node) :
                 cv2.imshow('Mask', image2)
                 cv2.waitKey(1)
 
-                if self.objet.data != self.old:
-                    self.detection.publish(self.objet)
+                if self.objet != self.old:
+                    self.detection.publish(self.objetmsg)
 
-                self.old = self.objet.data
+                self.old = self.objet
 
 
                 # Publishing
