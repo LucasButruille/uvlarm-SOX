@@ -270,7 +270,10 @@ class Camera(Node) :
 
                         if len(self.dist_tab)>20:
                             self.distance_moyenne = round(np.mean(self.dist_tab),2)
+                            self.dist.data = (float)(self.distance_moyenne)
+                            self.distancepub.publish(self.dist)
                             self.dist_tab = []
+                            
 
                         
                         # Point au milieu de la bouteille
@@ -280,7 +283,7 @@ class Camera(Node) :
                         cv2.putText(frame, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
                         cv2.putText(ImageOrange, str(self.distance_moyenne) + 'm', (int(x)+10, int(y)-10), cv2.FONT_HERSHEY_DUPLEX, 1, self.color_info, 1, cv2.LINE_AA)
                         
-                        self.dist.data = (float)(self.distance_moyenne)
+                        
 
                         # self.objetmsg.data = f"Bouteille Orange à {self.distance_moyenne}m."
 
@@ -351,7 +354,6 @@ class Camera(Node) :
 
 
                 self.detection.publish(self.objet)
-                self.distancepub.publish(self.dist)
                 self.bottlepospub.publish(self.x_bottle)
 
 
