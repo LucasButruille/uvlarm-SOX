@@ -135,7 +135,7 @@ class AutoRobot(Node):
             self.velocity_publisher.publish(self.velo)
 
     def Detection_objet(self, detect) :
-        if len(self.detect_tab) < 52 :
+        if len(self.detect_tab) < 30 :
             if detect.data == False :
                 self.detect_tab.append(-1)
             else :
@@ -148,7 +148,7 @@ class AutoRobot(Node):
 
             self.detect_tab = []
             
-            if count > 40 :
+            if count > 25 :
                 self.objet = +1
             else :
                 self.objet = -1
