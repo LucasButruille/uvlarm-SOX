@@ -148,7 +148,7 @@ class AutoRobot(Node):
 
             self.detect_tab = []
             
-            if count > 10 :
+            if count > 40 :
                 self.objet = +1
             else :
                 self.objet = -1
@@ -167,9 +167,9 @@ class AutoRobot(Node):
 
     def Bottle_position(self, pos):
         if pos.data < 424 - 100 :
-            self.position = -1
-        elif pos.data > 424 + 100 :
             self.position = +1
+        elif pos.data > 424 + 100 :
+            self.position = -1
         else :
             self.position = 0
 
@@ -290,30 +290,30 @@ class AutoRobot(Node):
             # Zones éloignées sur les cotés 
             elif (sampletooleft1 > 5 or sampletooright1 > 5):
                 if (sampletooleft1 > sampletooright1) :         # Tourner légerement à droite
-                    self.lin = 0.8
+                    self.lin = 0.6
                     self.ang = -0.8
                 else :                                          # Tourner légerement à gauche
-                    self.lin = 0.8
+                    self.lin = 0.6
                     self.ang = 0.8
 
             elif (sampletooleft2 > 5 or sampletooright2 > 5) :
                 if (sampletooleft2 > sampletooright2) :         # Tourner légerement à droite
-                    self.lin = 0.8
+                    self.lin = 0.6
                     self.ang = -0.6
                 else :                                          # Tourner légerement à gauche
-                    self.lin = 0.8
+                    self.lin = 0.6
                     self.ang = 0.6
 
             elif (sampletooleft3 > 5 or sampletooright3 > 5) :
                 if (sampletooleft3 > sampletooright3) :         # Tourner légerement à droite
-                    self.lin = 0.8
+                    self.lin = 0.6
                     self.ang = -0.4
                 else :                                          # Tourner légerement à gauche
-                    self.lin = 0.8
+                    self.lin = 0.6
                     self.ang = 0.4
 
             else :
-                self.lin = 0.8
+                self.lin = 0.6
                 self.ang = 0.0
 
         else :
@@ -337,7 +337,7 @@ class AutoRobot(Node):
                     self.ang = 0.0
         
         # Accélération
-        if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
+        if (old_speed.linear.x < self.lin and self.lin >= 0 and old_speed.linear.x >= 0) : # Linéaire de 10%
             if (old_speed.linear.x == 0) :
                 self.lin = 0.05
             else :
