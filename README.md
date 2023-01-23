@@ -6,6 +6,7 @@ Ce répertoire contient :
 4 packages :
 
 1. challenge1 	(les fichiers launch du challenge1)
+2. challenge2   (les fichiers launch du challenge2)
 2. tuto_move 	(les fichiers python concernant la navigation)
 3. tuto_sim		(un fichier launch pour utiliser gazebo et rviz)
 4. tuto_vision	(nos premiers tests de vision)
