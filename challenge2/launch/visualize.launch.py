@@ -7,14 +7,12 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    config_path = get_package_share_directory('challenge2')
-    dir = os.path.join(config_path, 'launch')
-    
+    config_path = get_package_share_directory('challenge2')    
 
     return LaunchDescription([
         
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([dir, '/mon_sync_launch.py']),
+            PythonLaunchDescriptionSource([config_path, '/mon_sync_launch.py']),
             launch_arguments = {'use_sim_time' : 'False'}.items(),
             
         ),

@@ -12,8 +12,7 @@ from nav2_common.launch import HasNodeParams
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     params_file = LaunchConfiguration('params_file')
-    default_params_file = os.path.join(get_package_share_directory("challenge2"),
-                                       'config/config_slam_toolbox.yaml')
+    default_params_file = '/home/bot/ros2_ws/uvlarm-SOX/challenge2/config/config_slam_toolbox.yaml'
 
     declare_use_sim_time_argument = DeclareLaunchArgument(
         'use_sim_time',
