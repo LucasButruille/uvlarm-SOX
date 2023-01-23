@@ -51,4 +51,9 @@ def generate_launch_description():
             executable='reactive_move',
         ),
 
+        Node(
+            package='tuto_vision',
+            executable='camera_image',
+        ),
+
     ])
