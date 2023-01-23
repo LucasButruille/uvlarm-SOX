@@ -260,11 +260,12 @@ class Camera(Node) :
                         dx ,dy, dz = rs.rs2_deproject_pixel_to_point(color_intrin, [self.x_middle,self.y_middle], depth)
                         distance = round(math.sqrt(((dx)**2) + ((dy)**2) + ((dz)**2)),2)
                         
-                        if distance < 2.0 and distance > 0.1:
+                        if distance < 3.0 and distance > 0.1:
                             self.dist_tab.append(distance)
 
-                        if len(self.dist_tab)>20:
+                        if len(self.dist_tab)>10:
                             self.distance_moyenne = round(np.median(self.dist_tab),2)
+                            print(self.dist_tab)
                             self.dist_tab = []
 
                         # Point au milieu de la bouteille
