@@ -156,7 +156,7 @@ class AutoRobot(Node):
 
 
     def Distance(self, dist) :
-        if dist.data < 0.6 :
+        if dist.data < 0.6 and dist.data > 0.0:
             self.distance = -1
 
         elif dist.data > 0.8 :
@@ -337,9 +337,11 @@ class AutoRobot(Node):
                     self.ang = 0.0
         
         # Accélération
-        if (old_speed.linear.x < self.lin and self.lin >= 0 and old_speed.linear.x >= 0) : # Linéaire de 10%
+        if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
             if (old_speed.linear.x == 0) :
                 self.lin = 0.05
+            elif old_speed.linear.x < 0 :
+                self.lin = min(self.lin, old_speed.linear.x * 0.90)
             else :
                 self.lin = min(self.lin, old_speed.linear.x * 1.10)
         
