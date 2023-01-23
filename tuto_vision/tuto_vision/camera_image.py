@@ -37,7 +37,6 @@ class Camera(Node) :
         self.w, self.h = 0, 0
         self.rapport1 = 0
         self.rapport2 = 0
-        self.old = False
         self.x_middle = (int)(0)
         self.y_middle = (int)(0)
         self.dist_tab = []
@@ -251,10 +250,8 @@ class Camera(Node) :
                 cv2.imshow('Mask', image2)
                 cv2.waitKey(1)
 
-                if self.objet != self.old:
-                    self.detection.publish(self.objetmsg)
+                self.detection.publish(self.objetmsg)
 
-                self.old = self.objet
 
 
                 # Publishing
