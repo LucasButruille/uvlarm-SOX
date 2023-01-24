@@ -134,7 +134,7 @@ class AutoRobot(Node):
         elif self.b2 == True :
             self.velo.linear.x = 0.0
             self.velo.angular.z = 0.0
-            self.velocity_publisher.publish(self.velo)
+            # self.velocity_publisher.publish(self.velo)
         
         # print("b0 : " + str(self.b0) + "b1 : " + str(self.b1) + "b2 : " + str(self.b2))
 
