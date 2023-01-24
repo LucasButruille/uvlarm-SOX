@@ -28,12 +28,6 @@ def generate_launch_description():
         ),
 
         Node(
-            package='rviz2',
-            executable='rviz2',
-            arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/challenge2/config/slam_config.rviz']
-        ),
-
-        Node(
             package='tuto_move',
             executable='scan_echo',
         ),
