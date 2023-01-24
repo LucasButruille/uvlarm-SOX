@@ -238,19 +238,19 @@ class AutoRobot(Node):
 
                 if (sampleleft1 > sampleright1 and old_speed.angular.z <= 0 and sampletooright1 < 10) : # Tourner à droite zone 1
                     self.lin = 0.0
-                    self.ang = -1.0
+                    self.ang = -0.8
 
                 elif (sampleright1 > sampleleft1 and old_speed.angular.z >= 0 and sampletooleft1 < 10) : # Tourner à gauche zone 1
                     self.lin = 0.0
-                    self.ang = 1.0
+                    self.ang = 0.8
                 
                 else :
                     if old_speed.angular.z <= 0:
                         self.lin = 0.0
-                        self.ang = -1.0
+                        self.ang = -0.8
                     else:
                         self.lin = 0.0
-                        self.ang = 1.0
+                        self.ang = 0.8
 
             # Zone 2
             elif (sampleleft2 > 10 or sampleright2 > 10) :
@@ -275,48 +275,48 @@ class AutoRobot(Node):
             elif (sampleleft3 > 10 or sampleright3 > 10) :
 
                 if (sampleleft3 > sampleright3 and old_speed.angular.z <= 0 and sampletooright3 < 10) : # Tourner à droite zone 3
-                    self.lin = 0.4
+                    self.lin = 0.3
                     self.ang = -0.6
 
                 elif (sampleright3 > sampleleft3 and old_speed.angular.z >= 0 and sampletooleft3 < 10) : # Tourner à gauche zone 3
-                    self.lin = 0.4
+                    self.lin = 0.3
                     self.ang = 0.6
 
                 else :
                     if old_speed.angular.z <= 0:
-                        self.lin = 0.4
+                        self.lin = 0.3
                         self.ang = -0.6
                     else:
-                        self.lin = 0.4
+                        self.lin = 0.3
                         self.ang = 0.6
 
             # Zones éloignées sur les cotés 
             elif (sampletooleft1 > 5 or sampletooright1 > 5):
                 if (sampletooleft1 > sampletooright1) :         # Tourner légerement à droite
-                    self.lin = 0.6
+                    self.lin = 0.4
                     self.ang = -0.8
                 else :                                          # Tourner légerement à gauche
-                    self.lin = 0.6
+                    self.lin = 0.4
                     self.ang = 0.8
 
             elif (sampletooleft2 > 5 or sampletooright2 > 5) :
                 if (sampletooleft2 > sampletooright2) :         # Tourner légerement à droite
-                    self.lin = 0.6
+                    self.lin = 0.4
                     self.ang = -0.6
                 else :                                          # Tourner légerement à gauche
-                    self.lin = 0.6
+                    self.lin = 0.4
                     self.ang = 0.6
 
             elif (sampletooleft3 > 5 or sampletooright3 > 5) :
                 if (sampletooleft3 > sampletooright3) :         # Tourner légerement à droite
-                    self.lin = 0.6
+                    self.lin = 0.4
                     self.ang = -0.4
                 else :                                          # Tourner légerement à gauche
-                    self.lin = 0.6
+                    self.lin = 0.4
                     self.ang = 0.4
 
             else :
-                self.lin = 0.6
+                self.lin = 0.4
                 self.ang = 0.0
 
         else :
@@ -369,10 +369,10 @@ class AutoRobot(Node):
         self.velocity_publisher.publish(self.velo)
 
     def SLAM(self) :
-        self.lin = 1.5 * self.linear
-        self.ang = 1.5 * self.angular
-        self.velo.linear.x = self.lin
-        self.velo.angular.z = self.ang
+        # self.lin = 1.5 * self.linear
+        # self.ang = 1.5 * self.angular
+        self.velo.linear.x = 1.5 * self.linear
+        self.velo.angular.z = 1.5 * self.angular
         self.velocity_publisher.publish(self.velo)
         
 
