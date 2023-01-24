@@ -55,8 +55,8 @@ class AutoRobot(Node):
 
         self.lin = (float)
         self.ang = (float)
-        self.linear = 0.0
-        self.angular = 0.0
+        self.lin2 = 0.0
+        self.ang2 = 0.0
         self.detect_tab = []
         self.objet = -1
 
@@ -64,6 +64,7 @@ class AutoRobot(Node):
         if drop_event.state == 1 :
             self.b0 = False
             self.b1 = False
+            self.b2 = True
             self.led1.value = 3
             self.led1_publisher.publish(self.led1)
             self.led2.value = 3
@@ -76,6 +77,7 @@ class AutoRobot(Node):
         if bump_event.state == 1 :
             self.b0 = False
             self.b1 = False
+            self.b2 = True
             self.led1.value = 3
             self.led1_publisher.publish(self.led1)
             self.led2.value = 3
@@ -118,8 +120,8 @@ class AutoRobot(Node):
             self.sound_publisher.publish(self.melodie)
 
     def Maps(self, road) :
-        self.linear = road.linear.x
-        self.angular = road.angular.z
+        self.lin2 = road.linear.x
+        self.ang2 = road.angular.z
 
     def laser_data(self, points) :
         self.pntcld = points
@@ -133,6 +135,8 @@ class AutoRobot(Node):
             self.velo.linear.x = 0.0
             self.velo.angular.z = 0.0
             self.velocity_publisher.publish(self.velo)
+        
+        # print("b0 : " + str(self.b0) + "b1 : " + str(self.b1) + "b2 : " + str(self.b2))
 
     def Detection_objet(self, detect) :
         if len(self.detect_tab) < 30 :
@@ -371,8 +375,8 @@ class AutoRobot(Node):
     def SLAM(self) :
         # self.lin = 1.5 * self.linear
         # self.ang = 1.5 * self.angular
-        self.velo.linear.x = 1.5 * self.linear
-        self.velo.angular.z = 1.5 * self.angular
+        self.velo.linear.x = 1.5 * self.lin2
+        self.velo.angular.z = 1.5 * self.ang2
         self.velocity_publisher.publish(self.velo)
         
 
