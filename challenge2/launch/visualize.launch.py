@@ -12,17 +12,18 @@ def generate_launch_description():
     return LaunchDescription([
         
 
-        Node(
-            package='tbot_pytools',
-            executable='multiplexer',
-            prefix='gnome-terminal -x'
-        ),
+        # Node(
+        #     package='tbot_pytools',
+        #     executable='multiplexer',
+        #     prefix='gnome-terminal -x'
+        # ),
 
-        Node(
-            package='teleop_twist_keyboard',
-            executable='teleop_twist_keyboard',
-            prefix='gnome-terminal -x'
-        ),
+        # Node(
+        #     package='teleop_twist_keyboard',
+        #     executable='teleop_twist_keyboard',
+        #     prefix='gnome-terminal -x',
+        #     arguments = ['/cmd_vel:=/multi/cmd_nav']
+        # ),
         
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([config_path, '/mon_sync_launch.py']),
