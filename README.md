@@ -11,11 +11,6 @@ Ce répertoire contient :
 3. tuto_sim		(un fichier launch pour utiliser gazebo et rviz)
 4. tuto_vision	(nos premiers tests de vision)
 
-Les 3 fichiers launch du pkg challenge sont :
-1. tbot.launch.py
-2. simulation.launch.py
-3. visualize.launch.py
-
 # Installation
 
 On utilise ubuntu 20.04 et on suppose ros2-foxy déjà installé (https://docs.ros.org/en/foxy/Installation.html) avec le workspace `~/ros2_ws/` crée.
