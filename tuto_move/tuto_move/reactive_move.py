@@ -10,7 +10,9 @@ from kobuki_ros_interfaces.msg import ButtonEvent
 from kobuki_ros_interfaces.msg import Led
 from kobuki_ros_interfaces.msg import Sound
 from std_msgs.msg import Bool, Float64, Int64
-from visualization_msgs.msg import MarkerArray, Marker
+from visualization_msgs.msg import MarkerArray
+from geometry_msgs.msg import Pose, PoseStamped
+
 
 class AutoRobot(Node):
     def __init__(self):
@@ -56,7 +58,7 @@ class AutoRobot(Node):
 
         self.create_subscription(MarkerArray, '/visualization_marker', self.Marker_bottles, 10)
 
-        self.create_subscription(Marker, '/robot_pose', self.Robot_map, 10)
+        self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
 
         self.lin = (float)
         self.ang = (float)
@@ -215,7 +217,7 @@ class AutoRobot(Node):
         sampletooright3 = 0
         old_speed = self.velo
 
-        if self.objet == -1 or self.distance == +2 or self.bottle_prox == False :
+        if self.objet == -1 or self.distance == +2 or self.bottle_prox == True :
 
             for point in obstacles :
                 if point.y >= 0 and point.y < 0.20 :

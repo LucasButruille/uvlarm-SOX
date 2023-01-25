@@ -19,7 +19,7 @@ class PoseTransformer(Node):
 
     def activate_publisher(self):
         # Local Pose Publisher:
-        self.posePublisher= self.create_publisher( PoseStamped, 'local_goal', 10)
+        self.posePublisher= self.create_publisher(PoseStamped, 'local_goal', 10)
         self.create_timer(0.1, self.publish_pose)
 
     def getTransform(self):
