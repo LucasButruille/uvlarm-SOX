@@ -10,25 +10,19 @@ def generate_launch_description():
     config_path = get_package_share_directory('challenge2')  
 
     return LaunchDescription([
-        
 
-        # Node(
-        #     package='tbot_pytools',
-        #     executable='multiplexer',
-        #     prefix='gnome-terminal -x'
-        # ),
-
-        # Node(
-        #     package='teleop_twist_keyboard',
-        #     executable='teleop_twist_keyboard',
-        #     prefix='gnome-terminal -x',
-        #     arguments = ['/cmd_vel:=/multi/cmd_nav']
-        # ),
+        Node(
+            package='teleop_twist_keyboard',
+            executable='teleop_twist_keyboard',
+            prefix='gnome-terminal -x',
+            arguments = ['/cmd_vel:=/multi/cmd_nav']
+        ),
         
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([config_path, '/mon_sync_launch.py']),
             launch_arguments = {'use_sim_time' : 'False'}.items(),   
         ),
+
 
         Node(
             package='rviz2',

@@ -43,7 +43,7 @@ class AutoRobot(Node):
         self.b1 = False
         self.b2 = True
 
-        self.create_subscription(Twist, '/cmd_vel', self.Maps, 10)
+        self.create_subscription(Twist, '/slam_nav', self.Maps, 10)
 
         self.timer = self.create_timer(0.05, self.Mouvement)
 

@@ -7,21 +7,15 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    # config_path = get_package_share_directory('challenge2')    
     tbot_start_path = get_package_share_directory('tbot_start')
     tbot_start_launch_dir = os.path.join(tbot_start_path, 'launch')
-    nav_path = get_package_share_directory('nav2_bringup')
+    nav_path = '/home/bot/ros2_ws/uvlarm-SOX/challenge2'
 
     return LaunchDescription([
         
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([nav_path, '/launch/navigation_launch.py']),            
+            PythonLaunchDescriptionSource([nav_path, '/launch/mon_navigation_launch.py']),            
         ),
-
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource([config_path, '/mon_sync_launch.py']),
-        #     launch_arguments = {'use_sim_time' : 'False'}.items(),   
-        # ),
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([tbot_start_launch_dir, '/minimal.launch.py'])
@@ -40,6 +34,12 @@ def generate_launch_description():
         Node(
             package='tuto_vision',
             executable='camera_image',
+        ),
+
+        Node(
+            package='tbot_pytools',
+            executable='multiplexer',
+            prefix='gnome-terminal -x'
         ),
 
     ])
