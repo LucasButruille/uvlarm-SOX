@@ -11,6 +11,8 @@ from kobuki_ros_interfaces.msg import Led
 from kobuki_ros_interfaces.msg import Sound
 from std_msgs.msg import Bool, Float64, Int64
 from visualization_msgs.msg import MarkerArray
+from geometry_msgs.msg import Pose, PoseStamped
+
 
 class AutoRobot(Node):
     def __init__(self):
@@ -59,12 +61,16 @@ class AutoRobot(Node):
         self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
 
         self.bottleOK = Bool()
+        self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
+
         self.lin = (float)
         self.ang = (float)
         self.lin2 = 0.0
         self.ang2 = 0.0
         self.detect_tab = []
         self.objet = -1
+        self.robot_prox = False
+
 
     def WheelDrop(self, drop_event) :
         if drop_event.state == 1 :
@@ -186,9 +192,16 @@ class AutoRobot(Node):
         else :
             self.position = 0
 
-    # def Marker_bottles(self, marqueur) :
-    #     for i in marqueur :
-            
+    def Robot_map(self, robot_pose) :
+        self.robot_x = robot_pose.Pose.Point.x
+        self.robot_y = robot_pose.Pose.Point.y
+
+    def Marker_bottles(self, marqueur) :
+        self.robot_prox = False
+        for i in marqueur :
+            if self.robot_x > (marqueur[i].Pose.Point.x - 10.0) and self.robot_x < (marqueur[i].Pose.Point.x + 10.0) and self.robot_y > (marqueur[i].Pose.Point.y - 10.0) and self.robot_y < (marqueur[i].Pose.Point.y + 10.0) :
+                self.bottle_prox = True
+
 
     def Avoid_obstacles(self) :
 
@@ -207,7 +220,7 @@ class AutoRobot(Node):
         sampletooright3 = 0
         old_speed = self.velo
 
-        if self.objet == -1 or self.distance == +2 :
+        if self.objet == -1 or self.distance == +2 or self.bottle_prox == True :
 
             for point in obstacles :
                 if point.y >= 0 and point.y < 0.20 :
