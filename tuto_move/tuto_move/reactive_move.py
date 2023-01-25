@@ -56,6 +56,9 @@ class AutoRobot(Node):
 
         self.create_subscription(MarkerArray, '/visualization_marker', self.Marker_bottles, 10)
 
+        self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
+
+        self.bottleOK = Bool()
         self.lin = (float)
         self.ang = (float)
         self.lin2 = 0.0
@@ -349,6 +352,8 @@ class AutoRobot(Node):
                 else :
                     self.lin = 0.0
                     self.ang = 0.0
+                    self.bottleOK.data = True
+                    self.bottleOKpub.publish(self.bottleOK)
         
         # Accélération
         if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
