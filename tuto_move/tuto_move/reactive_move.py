@@ -10,6 +10,7 @@ from kobuki_ros_interfaces.msg import ButtonEvent
 from kobuki_ros_interfaces.msg import Led
 from kobuki_ros_interfaces.msg import Sound
 from std_msgs.msg import Bool, Float64, Int64
+from visualization_msgs.msg import MarkerArray
 
 class AutoRobot(Node):
     def __init__(self):
@@ -52,6 +53,8 @@ class AutoRobot(Node):
         self.create_subscription(Float64, '/distance', self.Distance, 10)
 
         self.create_subscription(Int64, '/bottle_position', self.Bottle_position, 10)
+
+        self.create_subscription(MarkerArray, '/visualization_marker', self.Marker_bottles, 10)
 
         self.lin = (float)
         self.ang = (float)
@@ -179,6 +182,10 @@ class AutoRobot(Node):
             self.position = -1
         else :
             self.position = 0
+
+    # def Marker_bottles(self, marqueur) :
+    #     for i in marqueur :
+            
 
     def Avoid_obstacles(self) :
 
@@ -373,8 +380,6 @@ class AutoRobot(Node):
         self.velocity_publisher.publish(self.velo)
 
     def SLAM(self) :
-        # self.lin = 1.5 * self.linear
-        # self.ang = 1.5 * self.angular
         self.velo.linear.x = 1.5 * self.lin2
         self.velo.angular.z = 1.5 * self.ang2
         self.velocity_publisher.publish(self.velo)
