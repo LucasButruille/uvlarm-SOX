@@ -1,15 +1,20 @@
 # grp-SOX repository for the UV-LARM (IMT Nord Europe)
 
 # Description
+
+Grâce au code et manipulation ci-dessous, il est possible de faire déplacer un robot Kobuki turtleBot3 de façon autonome, en évitant les obstacles. De plus, il est capable de cartographier l'espace qui l'entoure et de repérer les bouteilles oranges de NukaCola. Le robot place ces dernières sur une carte créée par RVIZ2 à l'aide d'un petit marqueur cylindrique orange.
+
 Ce répertoire contient :
 
-4 packages :
+6 packages :
 
-1. challenge1 	(les fichiers launch du challenge1)
-2. challenge2   (les fichiers launch du challenge2)
-2. tuto_move 	(les fichiers python concernant la navigation)
-3. tuto_sim		(un fichier launch pour utiliser gazebo et rviz)
-4. tuto_vision	(nos premiers tests de vision)
+1. challenge1 	(les fichiers launch du challenge 1)
+2. challenge2   (les fichiers launch du challenge 2)
+3. challenge3   (les fichiers launch du challenge 3)
+4. tuto_move 	(les fichiers python concernant la navigation)
+5. tuto_sim		(un fichier launch pour utiliser gazebo et rviz)
+6. tuto_vision	(nos premiers tests de vision)
+7. tuto_goalpose (les fichiers pythons permettant la localisation des bouteilles)
 
 # Installation
 

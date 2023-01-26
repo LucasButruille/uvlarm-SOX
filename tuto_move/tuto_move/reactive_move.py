@@ -56,13 +56,15 @@ class AutoRobot(Node):
 
         self.create_subscription(Int64, '/bottle_position', self.Bottle_position, 10)
 
-        self.create_subscription(MarkerArray, '/visualization_marker', self.Marker_bottles, 10)
+        self.create_subscription(MarkerArray, '/marker_transform', self.Marker_bottles, 10)
 
         self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
 
         self.bottleOK = Bool()
         
         self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
+
+        self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
 
         self.lin = (float)
         self.ang = (float)
@@ -71,6 +73,9 @@ class AutoRobot(Node):
         self.detect_tab = []
         self.objet = -1
         self.robot_prox = False
+        self.count_temp = 0
+        self.bottleOK = Bool()
+        self.distance_bottle = 0
 
 
     def WheelDrop(self, drop_event) :
@@ -173,6 +178,7 @@ class AutoRobot(Node):
 
 
     def Distance(self, dist) :
+        self.distance_bottle = dist.data
         if dist.data < 0.6 and dist.data > 0.0:
             self.distance = -1
 
@@ -200,7 +206,7 @@ class AutoRobot(Node):
     def Marker_bottles(self, marqueur) :
         self.robot_prox = False
         for i in marqueur :
-            if self.robot_x > (marqueur[i].pose.position.x - 10.0) and self.robot_x < (marqueur[i].pose.position.x + 10.0) and self.robot_y > (marqueur[i].pose.position.y - 10.0) and self.robot_y < (marqueur[i].pose.position + 10.0) :
+            if self.robot_x > (marqueur[i].pose.position.x - 0.2) and self.robot_x < (marqueur[i].pose.position.x + 0.2) and self.robot_y > (marqueur[i].pose.position.y - 0.2) and self.robot_y < (marqueur[i].pose.position.y + 0.2) :
                 self.bottle_prox = True
 
 
@@ -366,8 +372,13 @@ class AutoRobot(Node):
                 else :
                     self.lin = 0.0
                     self.ang = 0.0
-                    self.bottleOK.data = True
-                    self.bottleOKpub.publish(self.bottleOK)
+                    self.count_temp += 1
+                    if self.count_temp >= 60 :
+                        self.count_temp = 0
+                        self.bottleOK.data = True
+                        self.bottleOKpub.publish(self.bottleOK)
+                        self.melodie.value = 1
+                        self.sound_publisher.publish(self.melodie)
         
         # Accélération
         if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
