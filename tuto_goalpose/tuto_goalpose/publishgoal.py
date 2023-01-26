@@ -5,7 +5,7 @@ import tf2_ros.buffer, tf2_ros.transform_listener
 # from tf2_geometry_msgs.tf2_geometry_msgs import do_transform_pose
 from geometry_msgs.msg import Pose, PoseStamped
 import PyKDL
-from std_msgs.msg import Float64
+from std_msgs.msg import Float64, Bool
 from visualization_msgs.msg import MarkerArray, Marker
 
 
@@ -29,10 +29,10 @@ class PoseTransformer(Node):
 
         self.create_subscription(Float64, '/distance', self.get_distance, 10)
         # self.create_subscription(PointStamped, '/clicked_point', self.get_point, 10)
-        self.create_subscription(PoseStamped, '/bottleOK', self.is_bottle, 10)
+        self.create_subscription(Bool, '/bottleOK', self.is_bottle, 10)
         self.marker_rviz = MarkerArray()
         self.marker_tra = MarkerArray()
-        # self.timer = self.create_timer(0.1, self.pub_marker)
+        # self.timer = self.create_timer(0.1, self.pub_robot_pose)
         self.ID = 0
         self.distance = (float)(0.0)
         self.bottle = False   
@@ -95,16 +95,17 @@ class PoseTransformer(Node):
     
     def is_bottle(self, val) :
         self.bottle = val.data
+        print(self.bottle)
 
     def get_distance(self, dist):
-        # Transformé dans le repère map
         if self.bottle:
-            
+            print("2")
             self.x = dist.data
             self.y = 0.0
             self.z = 0.0
 
             self.marker = Marker()
+            self.marker.header.stamp = rclpy.time.Time()
             self.marker.type = 3
             self.marker.action = 0
             self.marker.id = self.ID
@@ -116,9 +117,9 @@ class PoseTransformer(Node):
             self.marker.color.r = (float)(255/255)
             self.marker.color.g = (float)(128/255)
             self.marker.color.b = (float)(0.0)
-            self.marker.scale.x = 0.2
-            self.marker.scale.y = 0.2
-            self.marker.scale.z = 0.4
+            self.marker.scale.x = 0.1
+            self.marker.scale.y = 0.1
+            self.marker.scale.z = 0.2
 
             self.marker_rviz.markers.append(self.marker)
             
@@ -132,13 +133,14 @@ class PoseTransformer(Node):
             self.pub_markerarray.publish(self.marker_tra)
 
             self.ID += 1
+            self.bottle = False
 
-    def pub_robot_pose(self):
-        p = PoseStamped()
-        p.pose.position.x = 0.0
-        p.pose.position.y = 0.0
-        newp = self.transform_pose(p)
-        self.robotpose.publish(newp)
+    # def pub_robot_pose(self):
+    #     p = PoseStamped()
+    #     p.pose.position.x = 0.0
+    #     p.pose.position.y = 0.0
+    #     newp = self.transform_pose(p.pose)
+    #     self.robotpose.publish(newp)
 
 
 
@@ -151,7 +153,6 @@ def main(args=None):
 
     # Initialize ScanInterperter
     node = PoseTransformer('goal_keeper')
-    node.activate_publisher()
     
     # infinite Loop
     rclpy.spin(node)

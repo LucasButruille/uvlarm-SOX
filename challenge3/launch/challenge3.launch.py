@@ -42,4 +42,9 @@ def generate_launch_description():
             prefix='gnome-terminal -x'
         ),
 
+        Node(
+            package='tuto_goalpose',
+            executable='publishgoal',
+        ),
+
     ])
