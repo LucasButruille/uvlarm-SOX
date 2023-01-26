@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from visualization_msgs.msg import MarkerArray, Marker
-from geometry_msgs.msg import PointStamped
+from geometry_msgs.msg import PointStamped, PoseStamped
 from std_msgs.msg import Float64, Bool
 
 class LocalGoal(Node):
@@ -9,8 +9,8 @@ class LocalGoal(Node):
         super().__init__('pub_marker')
         self.publisher = self.create_publisher(MarkerArray, '/visualization_marker', 10)
         self.create_subscription(Float64, '/distance', self.get_distance, 10)
-        self.create_subscription(PointStamped, '/clicked_point', self.get_point, 10)
-        self.create_subscription(Bool, '/bottleOK', self.is_bottle, 10)
+        # self.create_subscription(PointStamped, '/clicked_point', self.get_point, 10)
+        self.create_subscription(PoseStamped, '/bottleOK', self.is_bottle, 10)
         self.markerarray = MarkerArray()
         self.timer = self.create_timer(0.1, self.pub_marker)
         self.ID = 0

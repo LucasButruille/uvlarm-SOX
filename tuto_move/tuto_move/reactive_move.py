@@ -61,6 +61,7 @@ class AutoRobot(Node):
         self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
 
         self.bottleOK = Bool()
+        
         self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
 
         self.lin = (float)
@@ -193,13 +194,13 @@ class AutoRobot(Node):
             self.position = 0
 
     def Robot_map(self, robot_pose) :
-        self.robot_x = robot_pose.Pose.Point.x
-        self.robot_y = robot_pose.Pose.Point.y
+        self.robot_x = robot_pose.pose.position.x
+        self.robot_y = robot_pose.pose.position.y
 
     def Marker_bottles(self, marqueur) :
         self.robot_prox = False
         for i in marqueur :
-            if self.robot_x > (marqueur[i].Pose.Point.x - 10.0) and self.robot_x < (marqueur[i].Pose.Point.x + 10.0) and self.robot_y > (marqueur[i].Pose.Point.y - 10.0) and self.robot_y < (marqueur[i].Pose.Point.y + 10.0) :
+            if self.robot_x > (marqueur[i].pose.position.x - 10.0) and self.robot_x < (marqueur[i].pose.position.x + 10.0) and self.robot_y > (marqueur[i].pose.position.y - 10.0) and self.robot_y < (marqueur[i].pose.position + 10.0) :
                 self.bottle_prox = True
 
 
