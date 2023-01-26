@@ -58,6 +58,9 @@ class AutoRobot(Node):
 
         self.create_subscription(MarkerArray, '/marker_transform', self.Marker_bottles, 10)
 
+        self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
+
+        self.bottleOK = Bool()
         self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
 
         self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
