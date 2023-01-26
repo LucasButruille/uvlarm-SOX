@@ -10,7 +10,7 @@ from visualization_msgs.msg import MarkerArray, Marker
 
 
 class PoseTransformer(Node):
-    def __init__(self, name, reference_frame='map', target_frame='base_link'):
+    def __init__(self, name, reference_frame='base_link', target_frame='map'):
         super().__init__( name )
         # Transform tool:
         self.tf_buffer = tf2_ros.buffer.Buffer()
@@ -105,14 +105,16 @@ class PoseTransformer(Node):
             self.z = 0.0
 
             self.marker = Marker()
-            self.marker.header.stamp = rclpy.time.Time()
+            self.marker.header.stamp = rclpy.time.Time().to_msg()
             self.marker.type = 3
             self.marker.action = 0
             self.marker.id = self.ID
-            self.marker.header.frame_id = 'base_link'
+            self.marker.header.frame_id = 'map'
             self.marker.pose.position.x = self.x
             self.marker.pose.position.y = self.y
             self.marker.pose.position.z = self.z
+            newp = self.transform_pose(self.marker.pose)
+            self.marker.pose = newp.pose
             self.marker.color.a = 1.0
             self.marker.color.r = (float)(255/255)
             self.marker.color.g = (float)(128/255)
@@ -122,15 +124,11 @@ class PoseTransformer(Node):
             self.marker.scale.z = 0.2
 
             self.marker_rviz.markers.append(self.marker)
-            
-            newp = self.transform_pose(self.marker.pose)
 
-            self.marker.pose = newp.pose
-
-            self.marker_tra.markers.append(self.marker)
+            # self.marker_tra.markers.append(self.marker)
 
             self.pub_marker_rviz.publish(self.marker_rviz)
-            self.pub_markerarray.publish(self.marker_tra)
+            # self.pub_markerarray.publish(self.marker_tra)
 
             self.ID += 1
             self.bottle = False
