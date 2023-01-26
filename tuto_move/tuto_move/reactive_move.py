@@ -201,8 +201,8 @@ class AutoRobot(Node):
 
     def Marker_bottles(self, marqueur) :
         self.robot_prox = False
-        for i in marqueur :
-            if self.robot_x > (marqueur[i].pose.position.x - 0.2) and self.robot_x < (marqueur[i].pose.position.x + 0.2) and self.robot_y > (marqueur[i].pose.position.y - 0.2) and self.robot_y < (marqueur[i].pose.position.y + 0.2) :
+        for i in marqueur.markers :
+            if self.robot_x > (marqueur.markers[i].pose.position.x - 0.2) and self.robot_x < (marqueur.markers[i].pose.position.x + 0.2) and self.robot_y > (marqueur.markers[i].pose.position.y - 0.2) and self.robot_y < (marqueur.markers[i].pose.position.y + 0.2) :
                 self.bottle_prox = True
 
 
@@ -375,6 +375,7 @@ class AutoRobot(Node):
                         self.bottleOKpub.publish(self.bottleOK)
                         self.melodie.value = 1
                         self.sound_publisher.publish(self.melodie)
+                        
         
         # Accélération
         if (old_speed.linear.x < self.lin and self.lin >= 0) : # Linéaire de 10%
