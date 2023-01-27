@@ -179,7 +179,7 @@ class AutoRobot(Node):
         if dist.data < 0.6 and dist.data > 0.0:
             self.distance = -1
 
-        elif dist.data > 0.8 :
+        elif dist.data > 0.7 :
             self.distance = +1
 
         elif dist.data == 0.0 :
@@ -200,9 +200,11 @@ class AutoRobot(Node):
         self.robot_x = robot_pose.pose.position.x
         self.robot_y = robot_pose.pose.position.y
         self.robot_prox = False
-        for i in self.marqueur.markers :
-            if self.robot_x > (self.marqueur.markers[i].pose.position.x - 0.9) and self.robot_x < (self.marqueur.markers[i].pose.position.x + 0.9) and self.robot_y > (self.marqueur.markers[i].pose.position.y - 0.9) and self.robot_y < (self.marqueur.markers[i].pose.position.y + 0.9) :
+        for i in range(len(self.marqueur.markers)) :
+            if self.robot_x > (self.marqueur.markers[i].pose.position.x - 0.7) and self.robot_x < (self.marqueur.markers[i].pose.position.x + 0.7) and self.robot_y > (self.marqueur.markers[i].pose.position.y - 0.7) and self.robot_y < (self.marqueur.markers[i].pose.position.y + 0.7) :
                 self.robot_prox = True
+        print(self.robot_prox)
+        
 
     def Marker_bottles(self, mark) :
         self.marqueur = mark
