@@ -86,14 +86,16 @@ ros2 launch challenge1 visualize.launch.py
 
 ## Challenge 2 :
 
-Exécuter le fichier launch suivant sur le pc connecté au robot:
+Dans ce challenge, le robot est capable de se déplacer de manière autonome dans une zone fermée en évitant les obstacles. De plus, il est capable de construire une carte et de détecter des bouteilles dans son environnement.
+
+Pour lancer ce challenge, exécutez le fichier launch suivant sur le pc connecté au robot:
 ```
 ros2 launch challenge2 challenge2.launch.py
 ```
 Cette commande permet de lancer nav2 et le robot avec le laser et la caméra.
 
 Pour visualiser
-Le robot est capable de se déplacer de manière autonome dans une zone fermé en évitant les obstacles. De plus, il est capable de construire une carte et de détecter des bouteilles dans son environnement.
+
 
 ## Challenge 3
 
@@ -101,7 +103,6 @@ Exécuter le fichier launch suivant :
 ```
 ros2 launch challenge3 challenge3.launch.py
 ```
-Cette commande permet de lancer nav2 et le robot avec le laser et la caméra.
 
 # Développeur
 
