@@ -15,13 +15,6 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([tbot_start_launch_dir, '/minimal.launch.py'])
         ),
 
-        # Node(
-        #     package='teleop_twist_keyboard',
-        #     executable='teleop_twist_keyboard',
-        #     prefix='gnome-terminal -x',
-        #     arguments=['/cmd_vel:=/multi/cmd_teleop'] 
-        # ),
-
         Node(
             package='tuto_move',
             executable='scan_echo',
@@ -32,10 +25,10 @@ def generate_launch_description():
             executable='reactive_move',
         ),
 
-        # Node(
-        #     package='tbot_pytools',
-        #     executable='multiplexer',
-        #     prefix='gnome-terminal -x'
-        # ),
+        Node(
+            package='tbot_pytools',
+            executable='multiplexer',
+            prefix='gnome-terminal -x'
+        ),
 
     ])

@@ -22,20 +22,4 @@ def generate_launch_description():
             # arguments=['-d', '/home/bot/ros2_ws/uvlarm-SOX/challenge1/config/slam_config.rviz']
         ),
 
-        # Node(
-        #     package='tbot_pytools',
-        #     executable='multiplexer',
-        #     prefix='gnome-terminal -x'
-        # ),
-
-        # Node(
-        #     package='tuto_move',
-        #     executable='scan_echo',
-        # ),
-
-        # Node(
-        #     package='tuto_move',
-        #     executable='reactive_move',
-        # ),
-
     ])
