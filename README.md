@@ -1,6 +1,6 @@
 # grp-SOX repository for the UV-LARM (IMT Nord Europe)
 
-# Description
+## Description
 
 Grâce au code et manipulation ci-dessous, il est possible de faire déplacer un robot Kobuki turtleBot3 de façon autonome, en évitant les obstacles. De plus, il est capable de cartographier l'espace qui l'entoure et de repérer les bouteilles oranges de NukaCola. Le robot place ces dernières sur une carte créée par RVIZ2 à l'aide d'un petit marqueur cylindrique orange.
 
@@ -16,7 +16,7 @@ Ce répertoire contient :
 6. tuto_vision	(nos premiers tests de vision)
 7. tuto_goalpose (les fichiers pythons permettant la localisation des bouteilles)
 
-# Installation
+## Installation
 
 On utilise ubuntu 20.04 et on suppose ros2-foxy déjà installé (https://docs.ros.org/en/foxy/Installation.html) avec le workspace `~/ros2_ws/` crée.
 
@@ -53,9 +53,9 @@ Connectez vous en ssh sur le pc connecté au robot :
 ssh name@xx.xx.xx.xx
 ```
 
-# Exécution 
+## Exécution 
 
-## Robot :
+**Robot :**
 
 Un appui sur B0 permet de lancer le robot en complète autonomie et de détecter les bouteilles.
 
@@ -63,11 +63,11 @@ Un appui sur B1 permet d'atteindre un goal pose envoyé à partir de rviz2.
 
 Un appui sur B0 permet de mettre le robot en pause.
 
-## Vision :
+**Vision :**
 
 Le traitement pour détecter les bouteilles se fait via un filtre de couleur en HSV et calcul le rapport hauteur/largeur pour s'assurer que l'objet est bien une bouteille.
 
-## Challenge 1 :
+**Challenge 1 :**
 
 Pour lancer le robot avec le laser, exécutez la commande ci-dessous : 
 ```
@@ -84,7 +84,7 @@ Pour visualiser les données du laser sur rviz2 :
 ros2 launch challenge1 visualize.launch.py
 ```
 
-## Challenge 2 :
+**Challenge 2 :**
 
 Exécuter le fichier launch suivant sur le pc connecté au robot:
 ```
@@ -95,7 +95,7 @@ Cette commande permet de lancer nav2 et le robot avec le laser et la caméra.
 Pour visualiser
 Le robot est capable de se déplacer de manière autonome dans une zone fermé en évitant les obstacles. De plus, il est capable de construire une carte et de détecter des bouteilles dans son environnement.
 
-## Challenge 3
+**Challenge 3 :**
 
 Exécuter le fichier launch suivant :
 ```
@@ -103,7 +103,7 @@ ros2 launch challenge3 challenge3.launch.py
 ```
 Cette commande permet de lancer nav2 et le robot avec le laser et la caméra.
 
-# Développeur
+## Développeur
 
 Mérand Julien
 
