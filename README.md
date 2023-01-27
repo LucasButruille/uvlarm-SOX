@@ -50,9 +50,18 @@ colcon build
 
 **Etape 4 :**
 
-Connectez vous en ssh sur le pc connecté au robot :
+Pour pouvoir effectuer les transformées de frames, installez le bibliothèque python ```tf2-geometry-msgs``` :
+
 ```
-ssh name@xx.xx.xx.xx
+sudo apt update
+sudo apt install python3-tf2-geometry-msgs
+```
+
+**Etape 5 :**
+
+Pour un meilleur confort, connectez vous en ssh sur le pc relié au robot :
+```
+ssh pcname@xx.xx.xx.xx
 ```
 
 ## Exécution 
