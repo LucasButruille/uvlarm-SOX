@@ -46,8 +46,26 @@ colcon build
 . install/setup.sh
 ```
 
+**Etape 4 :**
 
-# Execution 
+Connectez vous en ssh sur le pc connecté au robot :
+```
+ssh name@xx.xx.xx.xx
+```
+
+# Exécution 
+
+## Robot :
+
+Un appui sur B0 permet de lancer le robot en complète autonomie et de détecter les bouteilles.
+
+Un appui sur B1 permet d'atteindre un goal pose envoyé à partir de rviz2.
+
+Un appui sur B0 permet de mettre le robot en pause.
+
+## Vision :
+
+Le traitement pour détecter les bouteilles se fait via un filtre de couleur en HSV et calcul le rapport hauteur/largeur pour s'assurer que l'objet est bien une bouteille.
 
 ## Challenge 1 :
 
@@ -68,20 +86,24 @@ ros2 launch challenge1 visualize.launch.py
 
 ## Challenge 2 :
 
-Exécuter le fichier launch suivant :
+Exécuter le fichier launch suivant sur le pc connecté au robot:
 ```
 ros2 launch challenge2 challenge2.launch.py
 ```
-Cette commande permet de lancer rviz2, slam_toolbox, nav2 et le robot avec le laser et la caméra.
+Cette commande permet de lancer nav2 et le robot avec le laser et la caméra.
 
-### Robot :
-Un appui sur B0 permet de lancer le robot en complète autonomie et de détecter les bouteilles.
+Pour visualiser
+Le robot est capable de se déplacer de manière autonome dans une zone fermé en évitant les obstacles. De plus, il est capable de construire une carte et de détecter des bouteilles dans son environnement.
 
-Un appui sur B1 permet d'atteindre un goal pose envoyé à partir de rviz2.
+## Challenge 3
 
-Un appui sur B0 permet de mettre le robot en pause.
+Exécuter le fichier launch suivant :
+```
+ros2 launch challenge3 challenge3.launch.py
+```
+Cette commande permet de lancer nav2 et le robot avec le laser et la caméra.
 
-# Author
+# Développeur
 
 Mérand Julien
 

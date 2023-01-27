@@ -56,11 +56,11 @@ class AutoRobot(Node):
 
         self.create_subscription(Int64, '/bottle_position', self.Bottle_position, 10)
 
-        # self.create_subscription(MarkerArray, '/marker_transform', self.Marker_bottles, 10)
+        self.create_subscription(MarkerArray, '/visualization_marker', self.Marker_bottles, 10)
 
         self.bottleOKpub = self.create_publisher(Bool, '/bottleOK', 10)
         
-        # self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
+        self.create_subscription(PoseStamped, '/robot_pose', self.Robot_map, 10)
 
         self.lin = (float)
         self.ang = (float)
@@ -72,6 +72,7 @@ class AutoRobot(Node):
         self.count_temp = 0
         self.bottleOK = Bool()
         self.distance_bottle = 0
+        self.marqueur = MarkerArray()
 
 
     def WheelDrop(self, drop_event) :
@@ -178,7 +179,7 @@ class AutoRobot(Node):
         if dist.data < 0.6 and dist.data > 0.0:
             self.distance = -1
 
-        elif dist.data > 0.8 :
+        elif dist.data > 0.7 :
             self.distance = +1
 
         elif dist.data == 0.0 :
@@ -195,15 +196,18 @@ class AutoRobot(Node):
         else :
             self.position = 0
 
-    # def Robot_map(self, robot_pose) :
-    #     self.robot_x = robot_pose.pose.position.x
-    #     self.robot_y = robot_pose.pose.position.y
+    def Robot_map(self, robot_pose) :
+        self.robot_x = robot_pose.pose.position.x
+        self.robot_y = robot_pose.pose.position.y
+        self.robot_prox = False
+        for i in range(len(self.marqueur.markers)) :
+            if self.robot_x > (self.marqueur.markers[i].pose.position.x - 0.7) and self.robot_x < (self.marqueur.markers[i].pose.position.x + 0.7) and self.robot_y > (self.marqueur.markers[i].pose.position.y - 0.7) and self.robot_y < (self.marqueur.markers[i].pose.position.y + 0.7) :
+                self.robot_prox = True
+        print(self.robot_prox)
+        
 
-    # def Marker_bottles(self, marqueur) :
-    #     self.robot_prox = False
-    #     for i in marqueur.markers :
-    #         if self.robot_x > (marqueur.markers[i].pose.position.x - 0.2) and self.robot_x < (marqueur.markers[i].pose.position.x + 0.2) and self.robot_y > (marqueur.markers[i].pose.position.y - 0.2) and self.robot_y < (marqueur.markers[i].pose.position.y + 0.2) :
-    #             self.robot_prox = True
+    def Marker_bottles(self, mark) :
+        self.marqueur = mark
 
 
     def Avoid_obstacles(self) :
@@ -223,7 +227,9 @@ class AutoRobot(Node):
         sampletooright3 = 0
         old_speed = self.velo
 
-        if self.objet == -1 or self.distance == +2 :# or self.robot_prox == True :
+        if self.objet == -1 or self.distance == +2 or self.robot_prox == True :
+
+            self.count_temp = 0
 
             for point in obstacles :
                 if point.y >= 0 and point.y < 0.20 :
