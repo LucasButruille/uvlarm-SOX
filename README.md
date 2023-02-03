@@ -1,5 +1,9 @@
 # grp-SOX repository for the UV-LARM (IMT Nord Europe)
 
+## Vidéo de présentation
+
+https://youtu.be/uH4v1Kj4qkM
+
 ## Description
 
 Grâce au code et manipulation ci-dessous, il est possible de faire déplacer le robot ```Kobuki turtleBot3``` de façon autonome, en évitant les obstacles. De plus, il est capable de cartographier l'espace qui l'entoure et de repérer les bouteilles oranges de NukaCola. Le robot place ces dernières sur une carte créée par ```rviz2``` à l'aide d'un petit marqueur cylindrique orange.
